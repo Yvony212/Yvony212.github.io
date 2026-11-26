@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Yvony Yang: content and go-to-market marketer. AI content, brand strategy and short video portfolio.">
+<meta property="og:title" content="Yvony Yang — Portfolio">
+<meta property="og:description" content="Yvony Yang: content and go-to-market marketer. AI content, brand strategy and short video portfolio.">
+<meta property="og:image" content="media/ig-reel-tent.jpg">
+<title>Yvony Yang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<style>
+/* Layout: the site is an AI creative tool. Hero = name + a generation panel (recruiter's prompt -> 3 results).
+   AI Lab = live AI work (creator account, a shipped Skill, an AI video). Work = bento of case studies opening in dialogs.
+   Outputs = 9:16 wall. About = system.md. Contact = prompt bar. */
+:root {
+  --canvas: #EEF0F4;
+  --panel: #FFFFFF;
+  --ink: #15171E;
+  --muted: #5D6272;
+  --line: #DADDE5;
+  --dot: #C6CAD5;
+  --cobalt: #2F4BFF;
+  --cobalt-soft: #E3E7FF;
+  --pink: #FF5FA2;
+  --lilac: #C9B8FF;
+  --night: #15171E;
+  --night-ink: #F2F3F8;
+  --sans: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  --serif: "Instrument Serif", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --canvas: #0F1117; --panel: #181B23; --ink: #ECEEF4; --muted: #9097A8; --line: #2A2E3A; --dot: #262A35;
+    --cobalt: #7086FF; --cobalt-soft: #1D2350; --pink: #FF77B2; --lilac: #A794FF; --night: #0A0B10; --night-ink: #F2F3F8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --canvas: #0F1117; --panel: #181B23; --ink: #ECEEF4; --muted: #9097A8; --line: #2A2E3A; --dot: #262A35;
+  --cobalt: #7086FF; --cobalt-soft: #1D2350; --pink: #FF77B2; --lilac: #A794FF; --night: #0A0B10; --night-ink: #F2F3F8;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--canvas);
+  background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 32px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; }
+h1, h2, h3, h4, p { margin: 0; }
+h1, h2, h3 { text-wrap: balance; letter-spacing: -0.03em; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+img, video { display: block; max-width: 100%; }
+:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 3px; border-radius: 6px; }
+.it { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+.label { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.02em; }
+.link { color: var(--cobalt); text-decoration: none; font-weight: 500; font-size: 14px; }
+.link:hover { text-decoration: underline; }
+.link::after { content: " ↗"; }
+
+/* Toolbar */
+.toolbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  margin-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: color-mix(in srgb, var(--panel) 88%, transparent); backdrop-filter: blur(10px);
+  border: 1px solid var(--line); border-radius: 14px; padding: 8px 8px 8px 14px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--canvas); }
+.brand { display: flex; align-items: center; gap: 9px; font-weight: 600; text-decoration: none; letter-spacing: -0.02em; }
+.brand .spark { width: 22px; height: 22px; border-radius: 7px; background: conic-gradient(from 200deg, var(--cobalt), var(--pink), var(--lilac), var(--cobalt)); }
+.tabs { display: flex; gap: 2px; }
+.tabs a { text-decoration: none; font-size: 14px; color: var(--muted); padding: 6px 12px; border-radius: 8px; }
+.tabs a:hover { background: var(--canvas); color: var(--ink); }
+.btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--panel); border-radius: 10px; padding: 9px 14px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--cobalt); border-color: var(--cobalt); color: #fff; }
+.btn.primary:hover { filter: brightness(1.08); }
+.status { display: inline-flex; align-items: center; gap: 6px; }
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 3px color-mix(in srgb, #22C55E 25%, transparent); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: center; padding-block: 64px 24px; }
+.hero > * { min-width: 0; }
+.hero-copy { display: grid; gap: 22px; }
+.hero h1 { font-size: clamp(52px, 7.6vw, 104px); line-height: 0.92; font-weight: 600; }
+.hero h1 .it { color: var(--cobalt); font-size: 1.08em; }
+.hero .lede { font-size: 19px; color: var(--muted); max-width: 30em; }
+.hero .lede b { color: var(--ink); font-weight: 600; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 4px 10px; color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* Generation panel */
+.gen { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--cobalt) 35%, transparent); }
+.gen-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.model { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); border-radius: 7px; padding: 3px 8px; color: var(--muted); }
+.prompt { display: flex; gap: 12px; align-items: flex-start; padding: 18px 18px 14px; }
+.prompt-text { flex: 1; min-width: 0; font-family: var(--mono); font-size: 15px; line-height: 1.55; }
+.prompt-text .caret { display: inline-block; width: 8px; height: 1.1em; vertical-align: -3px; background: var(--cobalt); margin-left: 2px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.run { flex: none; border: 0; border-radius: 10px; padding: 9px 14px; background: var(--ink); color: var(--panel); font-weight: 600; font-size: 14px; cursor: pointer; display: inline-flex; gap: 6px; align-items: center; }
+.run kbd { font-family: var(--mono); font-size: 11px; opacity: .6; }
+.progress { height: 2px; background: var(--line); position: relative; overflow: hidden; }
+.progress i { position: absolute; inset: 0; width: 100%; background: linear-gradient(90deg, var(--cobalt), var(--pink)); transform-origin: left; }
+.results-head { display: flex; justify-content: space-between; padding: 12px 18px 0; }
+.results { display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 10px; padding: 12px 18px 18px; }
+.res { border-radius: 12px; padding: 14px; display: grid; gap: 10px; align-content: space-between; min-height: 168px; position: relative; overflow: hidden; }
+.res .k { font-family: var(--mono); font-size: 11.5px; opacity: .8; }
+.res b { font-size: clamp(30px, 3.4vw, 40px); line-height: 1; font-weight: 600; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.res p { font-size: 13px; line-height: 1.4; }
+.res.r1 { background: var(--night); color: var(--night-ink); }
+.res.r2 { background: var(--pink); color: #2A0716; }
+.res.r3 { background: var(--lilac); color: #1A1240; }
+.bars { display: flex; align-items: flex-end; gap: 8px; height: 48px; }
+.bars span { flex: 1; border-radius: 5px 5px 2px 2px; background: #3A3D4A; position: relative; }
+.bars span.up { background: linear-gradient(180deg, var(--lilac), var(--cobalt)); }
+.bars em { position: absolute; top: -17px; left: 0; font-style: normal; font-family: var(--mono); font-size: 10.5px; opacity: .85; }
+.res .wave { height: 40px; width: 100%; }
+.res .wave path { fill: none; stroke: currentColor; stroke-width: 2; }
+@keyframes pop { from { transform: translateY(8px) scale(.98); filter: blur(4px); } to { transform: none; filter: none; } }
+.regen .res { animation: pop .5s cubic-bezier(.2,.8,.2,1) both; }
+.regen .res:nth-child(2) { animation-delay: .12s; } .regen .res:nth-child(3) { animation-delay: .24s; }
+.regen .progress i { animation: load .9s ease-out both; }
+@keyframes load { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Section heads */
+section.block { padding-block: 64px 0; scroll-margin-top: 80px; }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.sec-head h2 { font-size: clamp(34px, 4.6vw, 52px); font-weight: 600; line-height: 1; }
+.sec-head h2 .it { color: var(--cobalt); }
+.sec-head p { max-width: 34em; color: var(--muted); margin-top: 8px; }
+
+/* AI Lab */
+.lab { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: stretch; }
+.lab-card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.lab-card .shot { border-radius: 12px; overflow: hidden; background: var(--night); aspect-ratio: 592 / 304; }
+.lab-card .shot img { width: 100%; height: 100%; object-fit: cover; }
+.lab-card .shot.skill { aspect-ratio: 700 / 390; }
+.lab-card h3 { font-size: 20px; font-weight: 600; line-height: 1.2; }
+.lab-card p { color: var(--muted); font-size: 14.5px; }
+.lab-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.pill { font-family: var(--mono); font-size: 11.5px; border-radius: 999px; padding: 3px 9px; background: var(--cobalt-soft); color: var(--cobalt); white-space: nowrap; }
+.kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: auto; }
+.kpis div { background: var(--canvas); border-radius: 10px; padding: 8px 10px; }
+.kpis b { display: block; font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.kpis span { font-size: 12px; color: var(--muted); }
+.funnel { display: grid; gap: 6px; margin-top: auto; }
+.frow { display: grid; grid-template-columns: 84px minmax(0, 1fr) 44px; gap: 8px; align-items: center; font-size: 12.5px; }
+.frow span:first-child { color: var(--muted); }
+.frow .track { height: 10px; background: var(--canvas); border-radius: 999px; overflow: hidden; }
+.frow .track i { display: block; height: 100%; min-width: 3px; border-radius: 999px; background: linear-gradient(90deg, var(--cobalt), var(--pink)); }
+.frow b { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.phone { border-radius: 16px; overflow: hidden; background: #000; aspect-ratio: 9 / 16; width: 100%; }
+.phone video { width: 100%; height: 100%; object-fit: cover; }
+.lab-card.video { grid-column: 1 / -1; display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 32px; align-items: center; padding: 16px 32px 16px 16px; }
+.vid-body { display: grid; gap: 16px; min-width: 0; max-width: 680px; }
+.vid-body h3 { font-size: clamp(22px, 2.4vw, 28px); }
+.vid-body > p { font-size: 15.5px; max-width: 46em; }
+.why { display: grid; border-top: 1px solid var(--line); }
+.why div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.why b { font-size: 14px; font-weight: 600; }
+.why span { font-size: 14.5px; color: var(--muted); line-height: 1.5; }
+.viewer { display: grid; gap: 8px; }
+.viewer .stage { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #fff; aspect-ratio: 16 / 9; }
+.viewer .stage img { width: 100%; height: 100%; object-fit: contain; }
+.viewer .nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.viewer .nav button { border: 1px solid var(--line); background: var(--panel); border-radius: 9px; padding: 6px 14px; cursor: pointer; font-size: 14px; }
+.viewer .nav button:hover { border-color: var(--cobalt); }
+.viewer .thumbs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+.viewer .thumbs button { flex: none; width: 96px; padding: 0; border: 2px solid transparent; border-radius: 6px; overflow: hidden; cursor: pointer; background: #fff; opacity: .65; }
+.viewer .thumbs button[aria-current="true"] { border-color: var(--cobalt); opacity: 1; }
+.viewer .thumbs img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+
+/* Bento canvas */
+.bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 250px; gap: 12px; }
+.card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 12px;
+  display: flex; flex-direction: column; gap: 10px; text-align: left; cursor: pointer; min-width: 0;
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.card:hover { transform: translateY(-3px); border-color: var(--cobalt); box-shadow: 0 18px 40px -24px color-mix(in srgb, var(--cobalt) 60%, transparent); }
+.card.big { grid-column: span 2; grid-row: span 2; }
+.card.wide { grid-column: span 2; }
+.chip { font-family: var(--mono); font-size: 12px; color: var(--muted); background: var(--canvas); border-radius: 8px; padding: 6px 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chip::before { content: "› "; color: var(--cobalt); }
+.art { flex: 1; min-height: 60px; border-radius: 12px; position: relative; overflow: hidden; }
+.art.grain::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.22) 1px, transparent 1.2px); background-size: 6px 6px; mix-blend-mode: overlay; }
+.art > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.art .shade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(10,8,16,.7)); }
+.art .big-word { position: absolute; left: 14px; bottom: 10px; right: 14px; font-family: var(--serif); font-style: italic; color: #fff; font-size: clamp(34px, 5vw, 64px); line-height: .95; letter-spacing: -0.02em; text-shadow: 0 2px 30px rgba(0,0,0,.3); }
+.card:not(.big) .art .big-word { font-size: clamp(26px, 2.6vw, 34px); }
+.decks { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px; background: linear-gradient(135deg, #DDE3FF, #FFD9EA); }
+.decks img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; align-self: center; box-shadow: 0 10px 24px -10px rgba(20,20,40,.45); background: #fff; }
+.decks img:first-child { transform: rotate(-2.5deg); } .decks img:last-child { transform: rotate(2deg); }
+.a1 { background: radial-gradient(80% 90% at 85% 15%, #FF5FA2 0%, transparent 60%), radial-gradient(90% 90% at 10% 90%, #2F4BFF 0%, transparent 65%), #1B1640; }
+.a3 { background: radial-gradient(90% 90% at 100% 0%, #3E4458 0%, transparent 60%), linear-gradient(160deg, #20232E, #0E1016); }
+.renoise-art { background: radial-gradient(70% 80% at 80% 10%, rgba(255,255,255,.10), transparent 60%), radial-gradient(60% 70% at 10% 100%, rgba(255,255,255,.06), transparent 60%), #161616; display: grid; place-items: center; }
+.rn-lockup { display: flex; align-items: center; gap: clamp(10px, 1.6vw, 18px); color: #fff; }
+.rn-lockup svg { width: clamp(44px, 6vw, 84px); height: auto; }
+.rn-lockup span { font-size: clamp(34px, 5.2vw, 72px); font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+.rn-tag { position: absolute; left: 16px; bottom: 14px; font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.6); }
+.card-foot { display: flex; justify-content: space-between; align-items: end; gap: 10px; }
+.card-foot h3 { font-size: 18px; font-weight: 600; line-height: 1.2; }
+.card.big .card-foot h3 { font-size: 24px; }
+.card-foot .label { margin-top: 2px; display: block; }
+.stat { flex: none; text-align: right; }
+.stat b { display: block; font-size: 22px; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.stat span { font-size: 11.5px; color: var(--muted); font-family: var(--mono); }
+
+/* Outputs wall */
+.wall-scroll { overflow-x: auto; padding-bottom: 6px; }
+.wall { display: grid; grid-template-columns: repeat(3, minmax(150px, 1fr)); gap: 12px; min-width: 480px; max-width: 900px; }
+.tile { display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-color: var(--line); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; min-width: 0; transition: transform .2s ease, box-shadow .2s ease; }
+a.tile:hover { transform: translateY(-3px); border-color: var(--cobalt); box-shadow: 0 16px 34px -22px color-mix(in srgb, var(--cobalt) 60%, transparent); }
+button.tile { padding: 0; text-align: left; font: inherit; cursor: pointer; }
+button.tile:hover { transform: translateY(-3px); border-color: var(--cobalt); box-shadow: 0 16px 34px -22px color-mix(in srgb, var(--cobalt) 60%, transparent); }
+.tile .media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.playbadge { position: absolute; right: 8px; bottom: 8px; font-family: var(--mono); font-size: 11px; color: #fff; background: rgba(12,12,18,.6); backdrop-filter: blur(6px); border-radius: 999px; padding: 3px 9px; }
+.ads { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.ads figure { margin: 0; display: grid; gap: 6px; }
+.ads video { width: 100%; aspect-ratio: 4 / 5; object-fit: contain; background: #000; border-radius: 12px; }
+.ads figcaption { font-size: 13px; color: var(--muted); line-height: 1.4; }
+.ads figcaption b { display: block; color: var(--ink); font-weight: 600; font-size: 14px; }
+.tile .media { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--night); }
+.tile .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tile .src { position: absolute; bottom: 8px; right: 8px; font-family: var(--mono); font-size: 11px; color: #fff; background: rgba(12,12,18,.55); backdrop-filter: blur(6px); border-radius: 999px; padding: 3px 9px; }
+.tile .poster { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; color: #fff; }
+.tile .poster b { font-size: clamp(30px, 3vw, 40px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.tile .poster span { font-family: var(--mono); font-size: 11.5px; opacity: .85; margin-top: 6px; }
+.tile .info { padding: 10px 12px 12px; display: grid; gap: 3px; flex: 1; align-content: start; }
+.tile .info h4 { font-size: 14px; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; }
+.tile .info small { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tile .metric { display: flex; align-items: center; gap: 6px; margin-top: 6px; padding-top: 8px; border-top: 1px solid var(--line); font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tile .metric i { font-style: normal; color: var(--pink); }
+.t3 .media { background: linear-gradient(160deg, #C9B8FF, #2F4BFF 80%); }
+.t4 .media { background: linear-gradient(160deg, #FFB547, #FF5FA2 80%); }
+.t5 .media { background: linear-gradient(160deg, #FF8FBF, #B4235A 75%, #3A0D22); }
+.t6 .media { background: linear-gradient(160deg, #FFD9A8, #D2693C 75%, #4A1E0E); }
+
+/* About */
+.about { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 12px; }
+.doc { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.doc-bar { padding: 10px 16px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; }
+.doc-body { padding: 22px 24px 26px; display: grid; gap: 14px; font-size: 17px; max-width: 40em; }
+.doc-body .h { font-family: var(--mono); font-size: 13px; color: var(--cobalt); }
+.side { display: grid; gap: 12px; align-content: start; }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 18px; display: grid; gap: 10px; }
+.box dl { margin: 0; display: grid; gap: 10px; }
+.box dt { font-weight: 600; font-size: 15px; }
+.box dd { margin: 0; color: var(--muted); font-size: 14.5px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips span { font-size: 13px; background: var(--canvas); border-radius: 8px; padding: 4px 9px; }
+
+/* Contact */
+.contact { margin-top: 64px; background: var(--night); color: var(--night-ink); border-radius: 22px; padding: clamp(24px, 5vw, 56px); display: grid; gap: 22px; position: relative; overflow: hidden; }
+.contact::before { content: ""; position: absolute; width: 520px; height: 520px; right: -160px; top: -220px; background: radial-gradient(circle, color-mix(in srgb, #FF5FA2 55%, transparent), transparent 65%); pointer-events: none; }
+.contact > * { position: relative; }
+.contact h2 { font-size: clamp(36px, 6vw, 72px); line-height: .95; font-weight: 600; letter-spacing: -0.035em; }
+.contact h2 .it { color: #C9B8FF; }
+.contact p { color: #B8BCCB; max-width: 34em; }
+.send { display: flex; gap: 10px; align-items: center; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 14px; padding: 8px 8px 8px 16px; max-width: 640px; }
+.send .email { flex: 1; min-width: 0; font-family: var(--mono); font-size: clamp(14px, 2.2vw, 17px); user-select: all; overflow-wrap: anywhere; }
+.send button { flex: none; border: 0; border-radius: 10px; padding: 10px 16px; font-weight: 600; background: #fff; color: #15171E; cursor: pointer; }
+footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-top: 22px; }
+
+/* Case dialog */
+dialog { border: 1px solid var(--line); border-radius: 22px; padding: 0; width: min(860px, calc(100vw - 32px)); max-height: calc(100vh - 48px); background: var(--panel); color: var(--ink); }
+dialog::backdrop { background: rgba(10, 11, 16, .55); backdrop-filter: blur(4px); }
+.dlg-head { position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--line); }
+.dlg-head button { border: 1px solid var(--line); background: var(--panel); border-radius: 9px; padding: 6px 12px; cursor: pointer; }
+.dlg-body { padding: 18px 22px 26px; display: grid; gap: 22px; }
+.dlg-body > .art { min-height: 220px; flex: none; }
+.dlg-body h3 { font-size: clamp(26px, 4vw, 36px); font-weight: 600; line-height: 1.05; }
+.dlg-body h4 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+.dlg-video { border-radius: 14px; overflow: hidden; background: #000; }
+.dlg-video video { width: 100%; }
+.steps { display: grid; gap: 14px; }
+.step { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 14px; border-top: 1px solid var(--line); padding-top: 14px; }
+.step ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.step li::marker { color: var(--cobalt); }
+.step q { font-style: italic; }
+.nums { display: flex; flex-wrap: wrap; gap: 8px; }
+.nums div { background: var(--canvas); border-radius: 10px; padding: 8px 12px; }
+.nums b { display: block; font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.nums span { font-size: 12.5px; color: var(--muted); }
+.slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.slots div { aspect-ratio: 16 / 9; border-radius: 10px; border: 1px dashed var(--line); background: var(--canvas); display: grid; place-items: center; font-family: var(--mono); font-size: 11.5px; color: var(--muted); text-align: center; padding: 6px; }
+.deck { display: grid; gap: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
+.deck-head { display: grid; gap: 4px; }
+.deck-head img { border-radius: 10px; border: 1px solid var(--line); background: #fff; }
+.top-vids { display: grid; gap: 10px; border-top: 1px solid var(--line); padding-top: 16px; }
+.vgrid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
+.vgrid a { display: grid; gap: 4px; align-content: start; text-decoration: none; color: inherit; }
+.vgrid img { width: 100%; aspect-ratio: 362 / 450; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); transition: transform .2s ease; }
+.vgrid a:hover img { transform: translateY(-2px); border-color: var(--cobalt); }
+.vgrid b { font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.vgrid b::before { content: "♥ "; color: var(--pink); font-size: 13px; }
+.vgrid span { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+.side-video { display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: 18px; align-items: start; }
+
+@media (max-width: 900px) {
+  .vgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .hero, .about { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding-block: 40px 24px; gap: 28px; }
+  .lab-card.video { grid-template-columns: 200px minmax(0, 1fr); }
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 230px; }
+  .card.big { grid-column: span 2; grid-row: span 2; }
+}
+@media (max-width: 600px) {
+  .tabs { display: none; }
+  .results { grid-template-columns: minmax(0, 1fr); }
+  .res { min-height: 0; }
+  .lab { grid-template-columns: minmax(0, 1fr); }
+  .lab-card.video { grid-template-columns: minmax(0, 1fr); }
+  .lab-card.video .phone { max-width: 260px; justify-self: center; }
+  .why div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .lab-card.video { padding: 16px; }
+  .bento { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; }
+  .card, .card.big, .card.wide { grid-column: auto; grid-row: auto; min-height: 250px; }
+  .card.big { min-height: 340px; }
+  .step, .deck-head, .side-video { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .slots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ads { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .prompt { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before { animation: none !important; transition: none !important; }
+}
+</style>
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <nav class="toolbar" aria-label="Main">
+    <a class="brand" href="#top"><span class="spark" aria-hidden="true"></span>yvony.studio</a>
+    <div class="tabs">
+      <a href="#ai-lab">AI Lab</a>
+      <a href="#work">Work</a>
+      <a href="#outputs">Outputs</a>
+      <a href="#about">About</a>
+    </div>
+    <a class="btn" href="#contact"><span class="status">Open to roles</span></a>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-copy">
+      <span class="label">Content &amp; go-to-market marketer</span>
+      <h1>Yvony <span class="it">Yang</span></h1>
+      <p class="lede">I turn user research into content people watch, and then check that it converts. Most recently: <b>US and Japan go-to-market for Renoise</b>, an AI video creation platform.</p>
+      <div class="tags">
+        <span class="tag">MA Creative Media · CityU HK</span>
+        <span class="tag">BA · King's College London</span>
+        <span class="tag">Graduating Feb 2027</span>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#ai-lab">See the AI work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="gen" id="gen" aria-label="Example generation: a recruiter's prompt and three results">
+      <div class="gen-bar">
+        <span class="label">new_generation</span>
+        <span class="model">yvony-2027 ▾</span>
+      </div>
+      <div class="prompt">
+        <p class="prompt-text" id="prompt-text">Find me a marketer who can research a market, make the content and prove it converts.<span class="caret" aria-hidden="true"></span></p>
+        <button class="run" id="run" type="button">Generate <kbd>↵</kbd></button>
+      </div>
+      <div class="progress"><i></i></div>
+      <div class="results-head"><span class="label">3 results</span><span class="label">Renoise · 2026</span></div>
+      <div class="results">
+        <div class="res r1">
+          <span class="k">paid conversion</span>
+          <div class="bars" aria-hidden="true"><span style="height:56%"><em>3.84%</em></span><span class="up" style="height:82%"><em>~5.5%</em></span></div>
+          <p>Sign-up-to-paid after the pricing changes I proposed</p>
+        </div>
+        <div class="res r2">
+          <span class="k">challenge views</span>
+          <b>1.3M+</b>
+          <svg class="wave" viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 C 20 34, 30 30, 45 26 S 70 18, 82 12 S 105 4, 120 2"/></svg>
+          <p>From a 15-day creator challenge with 22 creators</p>
+        </div>
+        <div class="res r3">
+          <span class="k">AI creator account</span>
+          <b>16K</b>
+          <svg class="wave" viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34 L 18 30 L 30 31 L 46 20 L 60 24 L 76 10 L 92 14 L 120 4"/></svg>
+          <p>Instagram followers; top AI short reached 167K views</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="block" id="ai-lab">
+    <div class="sec-head">
+      <div>
+        <h2>AI <span class="it">lab</span></h2>
+        <p>Things I made with generative AI that are live right now: a creator account, a product template and an AI-made training video.</p>
+      </div>
+      <span class="label">made with AI · shipped</span>
+    </div>
+    <div class="lab">
+      <article class="lab-card">
+        <div class="lab-top"><span class="pill">Instagram · @chessunyan</span><a class="link" href="https://www.instagram.com/chessunyan/" target="_blank" rel="noopener">View account</a></div>
+        <div class="shot"><img src="media/ig-top-reels.jpg" alt="Three AI-generated story reels from @chessunyan with 167K, 125K and 40K views"></div>
+        <h3>An AI-director account for Renoise</h3>
+        <p>I ran Renoise's creator-ambassador account, publishing AI-generated short stories and a daily "How to do this" tutorial series that shows the prompts behind each video.</p>
+        <div class="kpis">
+          <div><b>16K</b><span>followers</span></div>
+          <div><b>180</b><span>posts</span></div>
+          <div><b>167K</b><span>views, top reel</span></div>
+        </div>
+      </article>
+
+      <article class="lab-card">
+        <div class="lab-top"><span class="pill">Renoise Skill · live</span><a class="link" href="https://renoise.ai/?id=11581" target="_blank" rel="noopener">Try it</a></div>
+        <div class="shot skill"><img src="media/skill-gta-pet.jpg" alt="Renoise Skill page: GTA Pet In-Game Interaction, a template that turns a pet photo into a game-style video"></div>
+        <h3>GTA Pet In-Game Interaction</h3>
+        <p>A remix template I launched on Renoise: upload a photo of your pet and it stars in an open-world game clip. First two days after launch:</p>
+        <div class="funnel" aria-label="Funnel for the first two days: 172 visitors, 35 users who landed, 5 sign-ups, 1 paid order of 18 US dollars">
+          <div class="frow"><span>Visitors</span><span class="track"><i style="width:100%"></i></span><b>172</b></div>
+          <div class="frow"><span>Landed users</span><span class="track"><i style="width:20.3%"></i></span><b>35</b></div>
+          <div class="frow"><span>Sign-ups</span><span class="track"><i style="width:2.9%"></i></span><b>5</b></div>
+          <div class="frow"><span>Paid</span><span class="track"><i style="width:0.6%"></i></span><b>$18</b></div>
+        </div>
+      </article>
+
+      <article class="lab-card video">
+        <div class="phone"><video src="media/sf-ai-video.mp4" poster="media/sf-ai-poster.jpg" muted autoplay loop playsinline controls preload="metadata" aria-label="AI-generated SF Express training video"></video></div>
+        <div class="vid-body">
+          <div class="lab-top"><span class="pill">SF Express · AI video · 20s</span><span class="label">internal training</span></div>
+          <h3>A delivery rule, told as a 20-second story</h3>
+          <p>SF couriers have a rule: when a parcel is signed for by someone other than the customer, such as a guard room or a neighbour, the customer must be told straight away. Rule sheets get skimmed, so I turned this one into a short AI-generated story about a courier and a very large ginger cat.</p>
+          <div class="why">
+            <div><b>Why it matters</b><span>Customers don't assume the parcel is lost, so complaints drop.</span></div>
+            <div><b>What it shows</b><span>Every hand-over is traceable, from door to guard room to customer.</span></div>
+            <div><b>How I made it</b><span>Script and storyboard, consistent characters, image-to-video for each shot, then edit and captions.</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="sec-head"><h2>Selected <span class="it">work</span></h2><span class="label">4 case studies · tap one to open</span></div>
+    <div class="bento">
+      <button class="card big" type="button" data-case="case-renoise">
+        <span class="chip">take an AI video tool to the US and Japan</span>
+        <div class="art renoise-art"><div class="rn-lockup"><svg viewBox="30 25 190 200" aria-hidden="true"><path fill="#fff" d="M87.6945 153.898C88.4211 152.396 88.7844 151.645 89.4504 151.016C89.9965 150.499 90.8095 150.038 91.5331 149.835C92.4155 149.587 93.2916 149.665 95.0438 149.821C112.564 151.378 124.21 155.042 132.834 163.666C142.534 173.365 145.959 186.89 147.168 208.296C147.246 209.667 148.376 210.75 149.75 210.75C151.124 210.75 152.254 209.667 152.332 208.296C153.541 186.89 156.966 173.365 166.666 163.666C175.505 154.826 187.52 151.197 205.782 149.707C207.002 149.608 207.612 149.558 208.106 149.8C208.517 150.001 208.891 150.397 209.069 150.818C209.283 151.324 209.203 151.902 209.044 153.058C206.59 170.841 194.459 187.914 178.333 204.04C151.474 230.9 112.815 235.79 92.6196 215.594C77.8925 200.867 76.7983 176.415 87.6945 153.898ZM55.3857 37.1353C75.5812 16.9398 122.732 31.3469 160.699 69.3145C182.269 90.8841 204.723 120.068 208.833 140.359C209.062 141.489 209.177 142.055 208.978 142.589C208.816 143.025 208.43 143.46 208.016 143.672C207.508 143.933 206.89 143.882 205.654 143.78C187.464 142.284 175.485 138.652 166.666 129.833C156.966 120.134 153.541 106.609 152.332 85.2031C152.254 83.8318 151.124 82.7495 149.75 82.7495C148.376 82.7495 147.246 83.8318 147.168 85.2031C145.959 106.609 142.534 120.134 132.834 129.833C123.682 138.986 111.124 142.551 91.7538 143.941C91.4777 143.961 91.3397 143.97 91.1633 143.971C90.0561 143.972 88.7165 143.472 87.8804 142.747C87.7471 142.631 87.6864 142.57 87.5649 142.449C49.5974 104.481 35.1903 57.3307 55.3857 37.1353Z"/></svg><span>Renoise</span></div><span class="rn-tag">US &amp; Japan go-to-market · 2026</span></div>
+        <div class="card-foot">
+          <div><h3>Go-to-market for an AI video platform</h3><span class="label">Renoise · Jul–Nov 2026</span></div>
+          <div class="stat"><b>~5.5%</b><span>paid conv.</span></div>
+        </div>
+      </button>
+      <button class="card wide" type="button" data-case="case-brand">
+        <span class="chip">launch two challenger brands in elevators</span>
+        <div class="art"><div class="decks"><img src="media/deck-chencun.jpg" alt=""><img src="media/deck-kingsanhon.jpg" alt=""></div></div>
+        <div class="card-foot">
+          <div><h3>Brand launch strategies</h3><span class="label">Focus Media · 2024</span></div>
+          <div class="stat"><b>2</b><span>brand plans</span></div>
+        </div>
+      </button>
+      <button class="card" type="button" data-case="case-sf">
+        <span class="chip">make couriers the story</span>
+        <div class="art"><img src="media/sf-ai-poster.jpg" alt=""><span class="shade"></span><span class="big-word">SF Courier Says</span></div>
+        <div class="card-foot">
+          <div><h3>SF Express</h3><span class="label">29 videos · Douyin</span></div>
+          <div class="stat"><b>740K</b><span>likes</span></div>
+        </div>
+      </button>
+      <button class="card" type="button" data-case="case-ronghua">
+        <span class="chip">bring velvet flowers to London</span>
+        <div class="art"><img src="media/ronghua-poster.jpg" alt=""><span class="shade"></span><span class="big-word">Re-Flourishing</span></div>
+        <div class="card-foot">
+          <div><h3>Exhibition</h3><span class="label">KCL · 2024</span></div>
+          <div class="stat"><b>60s</b><span>film</span></div>
+        </div>
+      </button>
+    </div>
+  </section>
+
+  <section class="block" id="outputs">
+    <div class="sec-head"><h2>More <span class="it">outputs</span></h2><span class="label">AI shorts · short video · ads</span></div>
+    <div class="wall-scroll">
+      <div class="wall">
+        <a class="tile" href="https://www.instagram.com/chessunyan/reel/DftamHWC8Sq/" target="_blank" rel="noopener">
+          <div class="media"><img src="media/ig-reel-tent.jpg" alt="Still from an AI-generated short story on @chessunyan" loading="lazy"></div>
+          <div class="info"><h4>Only One Tent, EP. 66</h4><small>Instagram · @chessunyan</small><span class="metric"><i>▶</i>167K views</span></div>
+        </a>
+        <a class="tile" href="https://www.douyin.com/video/7606603818381397257" target="_blank" rel="noopener">
+          <div class="media"><img src="media/douyin/v1.jpg" alt="Douyin cover: an SF courier rescues a boy stuck on a window guard" loading="lazy"></div>
+          <div class="info"><h4>Courier rescues a boy</h4><small>Douyin · SF Courier Says</small><span class="metric"><i>♥</i>128K likes</span></div>
+        </a>
+        <button class="tile t4" type="button" data-case="case-bf">
+          <div class="media"><video src="media/bf/ad1.mp4" poster="media/bf/ad1.jpg" muted autoplay loop playsinline preload="metadata" aria-hidden="true"></video><span class="playbadge">▶ 4 ads</span></div>
+          <div class="info"><h4>Black Friday ad set</h4><small>Renoise · Meta, Google</small><span class="metric">Watch 4 of the ads</span></div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="sec-head"><h2>About <span class="it">me</span></h2><span class="label">Studied in London and Hong Kong</span></div>
+    <div class="about">
+      <div class="doc">
+        <div class="doc-bar"><span class="label">system.md</span><span class="label">last edited Nov 2026</span></div>
+        <div class="doc-body">
+          <p class="h"># How I work</p>
+          <p>I studied culture and the creative industries in London and creative media in Hong Kong. Since then I've made content for a courier brand, a fashion creator, local shops and an AI startup.</p>
+          <p>I start with data and user conversations and finish with something people watch: a short video, an ad set, a campaign. I use generative AI throughout, for research, scripting and production, and I read the numbers afterwards to decide what to make next.</p>
+          <p>Before that I wrote brand launch plans at Focus Media, China's largest elevator media network, and planned media strategies for clients including NetEase and JD.com.</p>
+        </div>
+      </div>
+      <div class="side">
+        <div class="box">
+          <dl>
+            <div><dt>Education</dt><dd>MA Creative Media, City University of Hong Kong, 2025–2027<br>BA Culture, Media and Creative Industries, King's College London, 2022–2025</dd></div>
+            <div><dt>Languages</dt><dd>Mandarin (native) · English (fluent, TOEFL 109) · Spanish (basic)</dd></div>
+          </dl>
+        </div>
+        <div class="box">
+          <span class="label">toolkit</span>
+          <div class="chips"><span>ChatGPT</span><span>Claude</span><span>Jimeng</span><span>Kling</span><span>Premiere Pro</span><span>CapCut</span><span>Photoshop</span><span>Illustrator</span><span>Figma</span><span>Tableau</span><span>Ocean Engine</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <span class="label" style="color:#9097A8">send_prompt</span>
+    <h2>Have a brief? <span class="it">Let's talk.</span></h2>
+    <p>Open to content marketing, social and go-to-market roles. The quickest way to reach me is email.</p>
+    <div class="send">
+      <span class="email" id="email">yvonneyy0212@outlook.com</span>
+      <button id="copy-email" type="button">Copy email</button>
+    </div>
+  </section>
+
+  <footer><span class="label">© 2026 Yvony Yang</span><span class="label">Built like a prompt, made by hand</span></footer>
+</div>
+
+<dialog id="case-bf" aria-labelledby="h-bf">
+  <div class="dlg-head"><span class="label">outputs · black friday</span><button type="button" data-close>Close</button></div>
+  <div class="dlg-body">
+    <h3 id="h-bf">Black Friday at Renoise: four of the ads</h3>
+    <p style="color:var(--muted);max-width:44em">For Renoise's Black Friday sale (79% off annual plans), I broke down competitor promotions and made ad creatives for Meta and Google. Each one sells a different reason to upgrade.</p>
+    <div class="ads">
+      <figure><video src="media/bf/ad1.mp4" poster="media/bf/ad1.jpg" muted loop playsinline controls preload="none"></video><figcaption><b>Price comparison</b>Kling 4 and Seedance 2.5 side by side, with the 79% offer on screen.</figcaption></figure>
+      <figure><video src="media/bf/ad2.mp4" poster="media/bf/ad2.jpg" muted loop playsinline controls preload="none"></video><figcaption><b>Model face-off</b>One story, rendered in MAGI-2 and Seedance 2.5.</figcaption></figure>
+      <figure><video src="media/bf/ad3.mp4" poster="media/bf/ad3.jpg" muted loop playsinline controls preload="none"></video><figcaption><b>Refreshed ad</b>An earlier character-board demo, updated with a 79% badge and end card.</figcaption></figure>
+      <figure><video src="media/bf/ad4.mp4" poster="media/bf/ad4.jpg" muted loop playsinline controls preload="none"></video><figcaption><b>Trend hook</b>A GTA6-style pet heist made with MAGI-2.</figcaption></figure>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="case-renoise" aria-labelledby="h-renoise">
+  <div class="dlg-head"><span class="label">case · renoise</span><button type="button" data-close>Close</button></div>
+  <div class="dlg-body">
+    <div class="art renoise-art"><div class="rn-lockup"><svg viewBox="30 25 190 200" aria-hidden="true"><path fill="#fff" d="M87.6945 153.898C88.4211 152.396 88.7844 151.645 89.4504 151.016C89.9965 150.499 90.8095 150.038 91.5331 149.835C92.4155 149.587 93.2916 149.665 95.0438 149.821C112.564 151.378 124.21 155.042 132.834 163.666C142.534 173.365 145.959 186.89 147.168 208.296C147.246 209.667 148.376 210.75 149.75 210.75C151.124 210.75 152.254 209.667 152.332 208.296C153.541 186.89 156.966 173.365 166.666 163.666C175.505 154.826 187.52 151.197 205.782 149.707C207.002 149.608 207.612 149.558 208.106 149.8C208.517 150.001 208.891 150.397 209.069 150.818C209.283 151.324 209.203 151.902 209.044 153.058C206.59 170.841 194.459 187.914 178.333 204.04C151.474 230.9 112.815 235.79 92.6196 215.594C77.8925 200.867 76.7983 176.415 87.6945 153.898ZM55.3857 37.1353C75.5812 16.9398 122.732 31.3469 160.699 69.3145C182.269 90.8841 204.723 120.068 208.833 140.359C209.062 141.489 209.177 142.055 208.978 142.589C208.816 143.025 208.43 143.46 208.016 143.672C207.508 143.933 206.89 143.882 205.654 143.78C187.464 142.284 175.485 138.652 166.666 129.833C156.966 120.134 153.541 106.609 152.332 85.2031C152.254 83.8318 151.124 82.7495 149.75 82.7495C148.376 82.7495 147.246 83.8318 147.168 85.2031C145.959 106.609 142.534 120.134 132.834 129.833C123.682 138.986 111.124 142.551 91.7538 143.941C91.4777 143.961 91.3397 143.97 91.1633 143.971C90.0561 143.972 88.7165 143.472 87.8804 142.747C87.7471 142.631 87.6864 142.57 87.5649 142.449C49.5974 104.481 35.1903 57.3307 55.3857 37.1353Z"/></svg><span>Renoise</span></div><span class="rn-tag">US &amp; Japan go-to-market · 2026</span></div>
+    <h3 id="h-renoise">Go-to-market for an AI video platform</h3>
+    <div class="steps">
+      <div class="step"><span class="label">Brief</span><p>Renoise is an AI video creation platform. As Global Go-to-Market Intern, I helped it win users and paid subscribers in the US and Japan.</p></div>
+      <div class="step"><span class="label">Research</span><ul>
+        <li>Mapped traffic sources for 6 competitors including Higgsfield. Social referrals drove 38–72% of their traffic, mostly tutorials, so we moved KOL partnerships toward tutorial content.</li>
+        <li>Interviewed 12 paying users and turned the pain points of short-drama and product-ad creators into creative briefs. 8 went live as ad assets.</li>
+      </ul></div>
+      <div class="step"><span class="label">Pricing</span><ul>
+        <li>Benchmarked competitor plans and proposed tiered plans, annual discounts and a revamped Unlimited tier.</li>
+        <li>Redesigned 10+ product pages to suit Japanese users, including the paywall and referral programme.</li>
+      </ul></div>
+      <div class="step"><span class="label">Campaigns</span><ul>
+        <li>Co-ran the 15-day Seedance 2.5 Creator Challenge: 30+ entries from 22 international creators.</li>
+        <li>For Black Friday, broke down competitor promotions and produced 120 ad creatives for Meta and Google.</li>
+        <li>Helped build the KOL programme and ran Renoise's X and Instagram accounts.</li>
+      </ul></div>
+      <div class="step"><span class="label">Result</span><div class="nums">
+        <div><b>3.84% → ~5.5%</b><span>sign-up-to-paid conversion</span></div>
+        <div><b>1.3M+</b><span>challenge views</span></div>
+        <div><b>15</b><span>KOL partnerships from 200+ contacts</span></div>
+        <div><b>+44%</b><span>#Renoise mentions</span></div>
+      </div></div>
+      <div class="step"><span class="label">Process</span><div class="slots"><div>Competitor traffic chart</div><div>Japanese paywall, before / after</div><div>Challenge poster</div></div></div>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="case-brand" aria-labelledby="h-brand">
+  <div class="dlg-head"><span class="label">case · focus media</span><button type="button" data-close>Close</button></div>
+  <div class="dlg-body">
+    <h3 id="h-brand">Two brand launch plans for elevator media</h3>
+    <p style="color:var(--muted)">At Focus Media, China's largest elevator advertising network, I wrote full launch plans for two small brands: market research, positioning, slogans, creative mock-ups and a media plan.</p>
+
+    <div class="deck">
+      <div class="deck-head">
+        <div><span class="label">Instant noodles · my 26 slides of 55</span><h4>Chencun: claiming an empty shelf</h4></div>
+      </div>
+      <div class="viewer" data-deck="chencun" data-count="26" aria-label="Chencun deck slides"></div>
+      <div class="steps">
+        <div class="step"><span class="label">Insight</span><ul>
+          <li>China's instant noodle market reached ¥182.4bn in 2022 and is forecast to hit ¥231.2bn by 2025 (iiMedia).</li>
+          <li>Rice noodles made up 22.3% of instant purchases, but flat rice noodles (he fen) didn't appear in the rankings at all. No brand owned the category.</li>
+          <li>Core buyers: busy, university-educated office workers, mostly women, in tier-1 and tier-2 cities, paying ¥2.6–7.5 a pack.</li>
+        </ul></div>
+        <div class="step"><span class="label">Positioning</span><p>Lead with "Kung Fu He Fen": made in Guangdong, where he fen comes from, and air-dried instead of fried.</p></div>
+        <div class="step"><span class="label">Slogans</span><ul>
+          <li><q>Working late? Pick Chencun He Fen and show your boss some real kung fu.</q></li>
+          <li><q>Chencun He Fen: thin enough to see, springy every time.</q></li>
+        </ul></div>
+        <div class="step"><span class="label">Media</span><p>Elevator TV, posters and smart screens, launching in Guangzhou and Shenzhen, where search interest and the share of young residents were highest.</p></div>
+      </div>
+    </div>
+
+    <div class="deck">
+      <div class="deck-head">
+        <div><span class="label">Baby skincare · my 33 slides of 90</span><h4>Kingsanhon: a category with no brand</h4></div>
+      </div>
+      <div class="viewer" data-deck="kingsanhon" data-count="33" aria-label="Kingsanhon deck slides"></div>
+      <div class="steps">
+        <div class="step"><span class="label">Research</span><ul>
+          <li>Reviewed 4 competitor brands online and visited 5 baby-care stores in Guangzhou, including Aiyingdao, Kidswant and Watsons.</li>
+          <li>Competitors charged ¥50–100 for 50ml and all added other ingredients. Watsons and mall baby sections stocked no camellia oil at all.</li>
+        </ul></div>
+        <div class="step"><span class="label">Positioning</span><p><q>The baby camellia oil mums can trust</q>: 100% camellia seed oil, nothing added, ¥69 for 30ml.</p></div>
+        <div class="step"><span class="label">Plan</span><ul>
+          <li>A six-week elevator campaign in three waves: awareness, then product benefits with a 15-second smart-screen spot (<q>Baby rash? Use Kingsanhon.</q>), then sales.</li>
+          <li>Sales wave: scan a QR code to get a full-size ¥69 bottle for ¥0.09, a gap big enough to signal the product's value.</li>
+          <li>Targeted Guangzhou and Shenzhen first (Guangdong has led China in births for five years) and residential compounds near maternity hospitals.</li>
+        </ul></div>
+      </div>
+    </div>
+    <p class="label">Slides shown are the parts I wrote. Focus Media's standard media pages and the reference case studies are left out.</p>
+  </div>
+</dialog>
+
+<dialog id="case-sf" aria-labelledby="h-sf">
+  <div class="dlg-head"><span class="label">case · sf express</span><button type="button" data-close>Close</button></div>
+  <div class="dlg-body">
+    <h3 id="h-sf">Short videos built from real courier stories</h3>
+    <div class="side-video">
+      <div class="steps">
+        <div class="step"><span class="label">Brief</span><p>Build trust in SF Express by telling real stories from frontline couriers on "SF Courier Says", SF's official courier account on Douyin (659K followers), and inside the company's own courier app.</p></div>
+        <div class="step"><span class="label">What I did</span><ul>
+          <li>Scripted, filmed and edited videos for the SF Courier Says accounts and the in-house SF Courier app.</li>
+          <li>Made an AI-generated training video, shown here, to explain a service rule to couriers.</li>
+          <li>Planned monthly internal campaigns on service quality and delivery safety, and wrote requirement documents for production partners.</li>
+          <li>Read paid-media data to find where viewers dropped off and boosted posts on Ocean Engine where it helped.</li>
+        </ul></div>
+        <div class="step"><span class="label">Result</span><div class="nums">
+          <div><b>29</b><span>videos I made, Jan–Apr 2026</span></div>
+          <div><b>740K</b><span>likes in total</span></div>
+          <div><b>157K</b><span>saves</span></div>
+          <div><b>18</b><span>videos with 10K+ likes</span></div>
+          <div><b>+20%</b><span>account engagement rate</span></div>
+        </div></div>
+        <div class="step"><span class="label">Account</span><a class="link" href="https://www.douyin.com/user/MS4wLjABAAAAnU6ohc4TrSxl6OGz9EKKY8QbWZ-6n-uZS-oVVCTyIbJ7CHQbaR6mLHG9ub9u-Zws" target="_blank" rel="noopener">SF Courier Says on Douyin</a></div>
+      </div>
+      <div class="phone"><video src="media/sf-ai-video.mp4" poster="media/sf-ai-poster.jpg" muted loop playsinline controls preload="none"></video></div>
+    </div>
+    <div class="top-vids">
+      <span class="label">Top videos · likes on Douyin</span>
+      <div class="vgrid">
+        <a href="https://www.douyin.com/video/7606603818381397257" target="_blank" rel="noopener"><img src="media/douyin/v1.jpg" alt="" loading="lazy"><b>128K</b><span>A courier climbs out to save a boy stuck on a fifth-floor window guard</span></a>
+        <a href="https://www.douyin.com/video/7625927517353938202" target="_blank" rel="noopener"><img src="media/douyin/v2.jpg" alt="" loading="lazy"><b>121K</b><span>Fellow delivery workers stop to help one of their own</span></a>
+        <a href="https://www.douyin.com/video/7605173703470566665" target="_blank" rel="noopener"><img src="media/douyin/v3.jpg" alt="" loading="lazy"><b>73K</b><span>A courier and a food-delivery rider help each other out</span></a>
+        <a href="https://www.douyin.com/video/7621515134883679497" target="_blank" rel="noopener"><img src="media/douyin/v4.jpg" alt="" loading="lazy"><b>62K</b><span>Wrongly blamed in a misunderstanding, he stays calm</span></a>
+        <a href="https://www.douyin.com/video/7615469408156208434" target="_blank" rel="noopener"><img src="media/douyin/v5.jpg" alt="" loading="lazy"><b>49K</b><span>A courier saves a choking child with the Heimlich manoeuvre</span></a>
+        <a href="https://www.douyin.com/video/7596967150133333267" target="_blank" rel="noopener"><img src="media/douyin/v6.jpg" alt="" loading="lazy"><b>45K</b><span>Eight couriers put out a fire on a 32-tonne tanker truck</span></a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="case-ronghua" aria-labelledby="h-ronghua">
+  <div class="dlg-head"><span class="label">case · re-flourishing</span><button type="button" data-close>Close</button></div>
+  <div class="dlg-body">
+    <div class="dlg-video"><video src="media/ronghua-highlight.mp4" poster="media/ronghua-poster.jpg" muted loop playsinline controls preload="none"></video></div>
+    <h3 id="h-ronghua">Re-Flourishing: bringing a Chinese velvet-flower craft to London</h3>
+    <div class="steps">
+      <div class="step"><span class="label">Brief</span><p>Ronghua is a traditional craft of flowers made from silk velvet, listed as Chinese intangible cultural heritage. This King's College London course project reinterpreted it for an international audience at Somerset House in December 2024.</p></div>
+      <div class="step"><span class="label">What I did</span><ul>
+        <li>As curator and visual director, set the curatorial theme and led the proposal and visitor-flow design.</li>
+        <li>Designed the posters, brochure and key visual, and made a 120-second promotional film.</li>
+        <li>Planned a hands-on workshop where visitors made their own flowers, a rose wall for written responses and a collage of the results.</li>
+        <li>Livestreamed the show on Instagram so people outside London could take part.</li>
+      </ul></div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var gen = document.getElementById('gen');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var promptEl = document.getElementById('prompt-text');
+  var full = promptEl.firstChild.nodeValue;
+  function regenerate() { gen.classList.remove('regen'); void gen.offsetWidth; gen.classList.add('regen'); }
+  document.getElementById('run').addEventListener('click', function () {
+    if (reduce) { regenerate(); return; }
+    var i = 0, node = promptEl.firstChild; node.nodeValue = '';
+    var t = setInterval(function () { i += 2; node.nodeValue = full.slice(0, i); if (i >= full.length) { clearInterval(t); node.nodeValue = full; regenerate(); } }, 22);
+  });
+
+  document.querySelectorAll('[data-case]').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var d = document.getElementById(card.getAttribute('data-case'));
+      if (!d || !d.showModal) return;
+      d.showModal();
+      var v = d.querySelector('video'); if (v) { try { v.play(); } catch (e) {} }
+    });
+  });
+  document.querySelectorAll('dialog').forEach(function (d) {
+    d.addEventListener('click', function (e) { if (e.target === d || e.target.hasAttribute('data-close')) d.close(); });
+    d.addEventListener('close', function () { d.querySelectorAll('video').forEach(function (v) { v.pause(); }); });
+  });
+
+  document.querySelectorAll('.viewer').forEach(function (v) {
+    var deck = v.getAttribute('data-deck'), n = +v.getAttribute('data-count'), i = 0;
+    function src(k) { return 'media/decks/' + deck + '/' + String(k + 1).padStart(2, '0') + '.jpg'; }
+    v.innerHTML = '<div class="stage"><img alt="" src="' + src(0) + '"></div>' +
+      '<div class="nav"><button type="button" data-step="-1">← Prev</button><span class="label"></span><button type="button" data-step="1">Next →</button></div>' +
+      '<div class="thumbs"></div>';
+    var img = v.querySelector('.stage img'), count = v.querySelector('.nav .label'), strip = v.querySelector('.thumbs');
+    for (var k = 0; k < n; k++) {
+      var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Slide ' + (k + 1));
+      b.innerHTML = '<img loading="lazy" alt="" src="' + src(k) + '">'; b.dataset.k = k; strip.appendChild(b);
+    }
+    function show(k) {
+      i = (k + n) % n; img.src = src(i); img.alt = 'Slide ' + (i + 1) + ' of ' + n; count.textContent = (i + 1) + ' / ' + n;
+      strip.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-current', +b.dataset.k === i ? 'true' : 'false'); });
+      var cur = strip.children[i]; if (cur) strip.scrollTo({ left: cur.offsetLeft - strip.clientWidth / 2 + cur.clientWidth / 2, behavior: 'smooth' });
+    }
+    v.addEventListener('click', function (e) {
+      var s = e.target.closest('[data-step]'); if (s) { show(i + +s.dataset.step); return; }
+      var t = e.target.closest('.thumbs button'); if (t) show(+t.dataset.k);
+    });
+    v.tabIndex = 0;
+    v.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') show(i + 1); if (e.key === 'ArrowLeft') show(i - 1); });
+    show(0);
+  });
+
+  document.getElementById('copy-email').addEventListener('click', function () {
+    var btn = this, el = document.getElementById('email');
+    function ok() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy email'; }, 1800); }
+    function fallback() { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press ⌘C'; }
+    try { navigator.clipboard.writeText(el.textContent).then(ok, fallback); } catch (e) { fallback(); }
+  });
+})();
+</script>
+
+</body>
+</html>
