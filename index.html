@@ -644,6 +644,13 @@ h2 { position: relative; }
   .lab-pup, .work-pup { width: 92px; top: -48px; }
   #work .sec-head .label { padding-right: 90px; }
 }
+
+/* sleepers keep the pleading "hire me" mood */
+.pup-flip[data-mood="plead"].is-sad .flip-stack { animation: sniffle 1.4s ease-in-out infinite; }
+.pup-flip[data-mood="plead"].is-sad.squish .flip-stack { animation: squish .55s cubic-bezier(.3, 1.5, .5, 1); }
+.pup-flip[data-mood="plead"] .tear { display: block; }
+.pup-flip[data-mood="plead"] .say { background: #fff; box-shadow: 0 10px 22px -14px rgba(120, 90, 50, .55); border: 2px solid #EBDCC6; color: #5E4A3A; }
+.pup-flip[data-mood="plead"] .say::after { background: #fff; border-right: 2px solid #EBDCC6; border-bottom: 2px solid #EBDCC6; }
 </style>
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -869,7 +876,7 @@ h2 { position: relative; }
     </div>
   </section>
 
-  <figure class="sleepers pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the sleeping puppies" data-say="Fully charged. Let's go! ☕"><span class="flip-stack"><img class="happy" src="media/art/pups-sleeping.jpg" alt="Colored-pencil Golden Retriever and Samoyed puppies asleep together" loading="lazy" width="1100" height="733"><img class="sad" src="media/art/pups-sleeping-up.jpg" alt="" aria-hidden="true"></span><span class="say hand" aria-live="polite"></span><figcaption class="hand">Sleeping buddies <span class="heart">♡</span> thanks for visiting</figcaption></figure>
+  <figure class="sleepers pup-flip" data-mood="plead" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the sleeping puppies" data-say="You're leaving? Hire me first…"><span class="flip-stack"><img class="happy" src="media/art/pups-sleeping.jpg" alt="Colored-pencil Golden Retriever and Samoyed puppies asleep together" loading="lazy" width="1100" height="733"><img class="sad" src="media/art/pups-sleeping-sad.jpg" alt="" aria-hidden="true"></span><span class="say hand" aria-live="polite"></span><figcaption class="hand">Sleeping buddies <span class="heart">♡</span> thanks for visiting</figcaption></figure>
   <footer><span class="label">© 2026 Yvony Yang</span><span class="label">Made by hand, supervised by two very good dogs</span></footer>
 </div>
 
@@ -1097,7 +1104,14 @@ h2 { position: relative; }
       if (say) say.textContent = sad ? p.getAttribute('data-say') : '';
       clearTimeout(timer);
       if (sad) {
-        if (!reduceM) {
+        if (!reduceM && p.getAttribute('data-mood') === 'plead') {
+          var st = p.querySelector('.flip-stack'), r = st.getBoundingClientRect(), pr = p.getBoundingClientRect();
+          for (var k = 0; k < 2; k++) (function (k) { setTimeout(function () {
+            var t = document.createElement('i'); t.className = 'tear';
+            t.style.left = (r.left - pr.left + r.width * (0.4 + 0.24 * k)) + 'px'; t.style.top = (r.top - pr.top + r.height * 0.5) + 'px';
+            p.appendChild(t); setTimeout(function () { t.remove(); }, 1000);
+          }, 250 + k * 320); })(k);
+        } else if (!reduceM) {
           var cols = ['#EBBE6E', '#EFB4A0', '#FFF7E3', '#D49A3E', '#F6D9A0'];
           for (var k = 0; k < 18; k++) {
             var c = document.createElement('i'); c.className = 'confetti' + (k % 5 === 0 ? ' paw' : '');
