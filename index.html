@@ -317,20 +317,35 @@ dialog::backdrop { background: rgba(10, 11, 16, .55); backdrop-filter: blur(4px)
 .side-video { display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: 18px; align-items: start; }
 
 @media (max-width: 900px) {
+  .bento { grid-auto-rows: auto; }
+  .card { min-height: 290px; }
+  .card.big { grid-row: auto; min-height: 400px; }
+  .wall { min-width: 0; }
+  .wall-scroll { overflow: visible; }
   .vgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hero, .about { grid-template-columns: minmax(0, 1fr); }
   .hero { padding-block: 40px 24px; gap: 28px; }
   .lab-card.video { grid-template-columns: 200px minmax(0, 1fr); }
-  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 230px; }
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .card.big { grid-column: span 2; grid-row: span 2; }
 }
 @media (max-width: 600px) {
-  .tabs { display: none; }
+  .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .toolbar { padding: 6px 6px 6px 10px; gap: 6px; }
+  .toolbar > .btn { display: none; }
+  .brand { font-size: 14px; gap: 7px; }
+  .brand .spark { width: 18px; height: 18px; border-radius: 6px; }
+  .tabs a { font-size: 13px; padding: 6px 7px; }
+  .vid-body .lab-top .label { display: none; }
+  .card.big { min-height: 330px; }
+  .hero h1 { font-size: 52px; }
+  .sec-head { margin-bottom: 14px; }
+  .contact { margin-top: 48px; }
   .results { grid-template-columns: minmax(0, 1fr); }
   .res { min-height: 0; }
   .lab { grid-template-columns: minmax(0, 1fr); }
   .lab-card.video { grid-template-columns: minmax(0, 1fr); }
-  .lab-card.video .phone { max-width: 260px; justify-self: center; }
+  .lab-card.video .phone { max-width: 210px; justify-self: center; }
   .why div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .lab-card.video { padding: 16px; }
   .bento { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; }
@@ -516,7 +531,7 @@ dialog::backdrop { background: rgba(10, 11, 16, .55); backdrop-filter: blur(4px)
         </a>
         <button class="tile t7" type="button" data-case="case-ronghua">
           <div class="media"><video src="media/ronghua-highlight.mp4" poster="media/ronghua/s2.jpg" muted autoplay loop playsinline preload="metadata" aria-hidden="true"></video><span class="playbadge">▶ 60s</span></div>
-          <div class="info"><h4>Re-Flourishing highlights</h4><small>Exhibition film · London</small><span class="metric">Somerset House, Dec 2024</span></div>
+          <div class="info"><h4>Re-Flourishing highlights</h4><small>Exhibition film · London</small><span class="metric">Dec 2024</span></div>
         </button>
         <button class="tile t4" type="button" data-case="case-bf">
           <div class="media"><video src="media/bf/ad1.mp4" poster="media/bf/ad1.jpg" muted autoplay loop playsinline preload="metadata" aria-hidden="true"></video><span class="playbadge">▶ 4 ads</span></div>
