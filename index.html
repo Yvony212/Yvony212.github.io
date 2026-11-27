@@ -222,7 +222,7 @@ section.block { padding-block: 64px 0; scroll-margin-top: 80px; }
 
 /* Outputs wall */
 .wall-scroll { overflow-x: auto; padding-bottom: 6px; }
-.wall { display: grid; grid-template-columns: repeat(3, minmax(150px, 1fr)); gap: 12px; min-width: 480px; max-width: 900px; }
+.wall { display: grid; grid-template-columns: repeat(4, minmax(150px, 1fr)); gap: 12px; min-width: 640px; }
 .tile { display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-color: var(--line); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; min-width: 0; transition: transform .2s ease, box-shadow .2s ease; }
 a.tile:hover { transform: translateY(-3px); border-color: var(--cobalt); box-shadow: 0 16px 34px -22px color-mix(in srgb, var(--cobalt) 60%, transparent); }
 button.tile { padding: 0; text-align: left; font: inherit; cursor: pointer; }
@@ -296,6 +296,11 @@ dialog::backdrop { background: rgba(10, 11, 16, .55); backdrop-filter: blur(4px)
 .nums div { background: var(--canvas); border-radius: 10px; padding: 8px 12px; }
 .nums b { display: block; font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
 .nums span { font-size: 12.5px; color: var(--muted); }
+.gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.gallery.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.gallery figure { margin: 0; display: grid; gap: 6px; }
+.gallery img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); background: var(--canvas); }
+.gallery figcaption { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
 .slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .slots div { aspect-ratio: 16 / 9; border-radius: 10px; border: 1px dashed var(--line); background: var(--canvas); display: grid; place-items: center; font-family: var(--mono); font-size: 11.5px; color: var(--muted); text-align: center; padding: 6px; }
 .deck { display: grid; gap: 14px; border-top: 1px solid var(--line); padding-top: 18px; }
@@ -334,6 +339,7 @@ dialog::backdrop { background: rgba(10, 11, 16, .55); backdrop-filter: blur(4px)
   .step, .deck-head, .side-video { grid-template-columns: minmax(0, 1fr); gap: 6px; }
   .slots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .vgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery, .gallery.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ads { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .prompt { flex-direction: column; }
 }
@@ -508,6 +514,10 @@ dialog::backdrop { background: rgba(10, 11, 16, .55); backdrop-filter: blur(4px)
           <div class="media"><img src="media/douyin/v1.jpg" alt="Douyin cover: an SF courier rescues a boy stuck on a window guard" loading="lazy"></div>
           <div class="info"><h4>Courier rescues a boy</h4><small>Douyin · SF Courier Says</small><span class="metric"><i>♥</i>128K likes</span></div>
         </a>
+        <button class="tile t7" type="button" data-case="case-ronghua">
+          <div class="media"><video src="media/ronghua-highlight.mp4" poster="media/ronghua/s2.jpg" muted autoplay loop playsinline preload="metadata" aria-hidden="true"></video><span class="playbadge">▶ 60s</span></div>
+          <div class="info"><h4>Re-Flourishing highlights</h4><small>Exhibition film · London</small><span class="metric">Somerset House, Dec 2024</span></div>
+        </button>
         <button class="tile t4" type="button" data-case="case-bf">
           <div class="media"><video src="media/bf/ad1.mp4" poster="media/bf/ad1.jpg" muted autoplay loop playsinline preload="metadata" aria-hidden="true"></video><span class="playbadge">▶ 4 ads</span></div>
           <div class="info"><h4>Black Friday ad set</h4><small>Renoise · Meta, Google</small><span class="metric">Watch 4 of the ads</span></div>
@@ -596,7 +606,11 @@ dialog::backdrop { background: rgba(10, 11, 16, .55); backdrop-filter: blur(4px)
         <div><b>15</b><span>KOL partnerships from 200+ contacts</span></div>
         <div><b>+44%</b><span>#Renoise mentions</span></div>
       </div></div>
-      <div class="step"><span class="label">Process</span><div class="slots"><div>Competitor traffic chart</div><div>Japanese paywall, before / after</div><div>Challenge poster</div></div></div>
+      <div class="step"><span class="label">Outputs</span><div class="gallery">
+        <figure><img src="media/bf/ad2.jpg" alt="Black Friday ad comparing MAGI-2 and Seedance 2.5" loading="lazy"><figcaption>Black Friday ad: MAGI-2 vs Seedance 2.5</figcaption></figure>
+        <figure><img src="media/ig-top-reels.jpg" alt="Top AI short stories on @chessunyan" loading="lazy"><figcaption>Creator account @chessunyan, 16K followers</figcaption></figure>
+        <figure><img src="media/skill-gta-pet.jpg" alt="GTA Pet In-Game Interaction template on Renoise" loading="lazy"><figcaption>GTA Pet template, live on Renoise</figcaption></figure>
+      </div></div>
     </div>
   </div>
 </dialog>
@@ -700,6 +714,12 @@ dialog::backdrop { background: rgba(10, 11, 16, .55); backdrop-filter: blur(4px)
         <li>Planned a hands-on workshop where visitors made their own flowers, a rose wall for written responses and a collage of the results.</li>
         <li>Livestreamed the show on Instagram so people outside London could take part.</li>
       </ul></div>
+      <div class="step"><span class="label">On the day</span><div class="gallery four">
+        <figure><img src="media/ronghua/s1.jpg" alt="Re-Flourishing brochure: 12 December 2024, Somerset House" loading="lazy"><figcaption>Brochure and programme</figcaption></figure>
+        <figure><img src="media/ronghua/s2.jpg" alt="Rose wall with handwritten tags" loading="lazy"><figcaption>Rose wall for responses</figcaption></figure>
+        <figure><img src="media/ronghua/s3.jpg" alt="Visitors at the flower-making workshop" loading="lazy"><figcaption>Flower-making workshop</figcaption></figure>
+        <figure><img src="media/ronghua/s4.jpg" alt="Collage wall of visitors' work" loading="lazy"><figcaption>Collage of the results</figcaption></figure>
+      </div></div>
     </div>
   </div>
 </dialog>
