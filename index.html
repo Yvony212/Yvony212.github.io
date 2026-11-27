@@ -661,6 +661,10 @@ h2 { position: relative; }
   .bento .card .renoise-art { aspect-ratio: 16 / 9; display: grid; }
 }
 
+
+.lang { display: inline-grid; place-items: center; height: 38px; min-width: 38px; padding: 0 10px; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; font-size: 13px; font-weight: 700; color: var(--ink); text-decoration: none; transition: border-color .2s, transform .2s; }
+.lang:hover { border-color: var(--muted); transform: translateY(-1px); }
+@media (max-width: 600px) { .lang { height: 34px; min-width: 34px; padding: 0 7px; font-size: 12px; } }
 /* BGM toggle */
 .tb-right { display: flex; align-items: center; gap: 8px; }
 .bgm-btn { position: relative; width: 38px; height: 38px; flex: none; display: grid; place-items: center; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; cursor: pointer; padding: 0; color: var(--ink); transition: transform .2s, border-color .2s; }
@@ -692,7 +696,7 @@ h2 { position: relative; }
       <a href="#outputs">Outputs</a>
       <a href="#about">About</a>
     </div>
-    <div class="tb-right"><button class="bgm-btn" id="bgmToggle" type="button" aria-pressed="false" aria-label="Play music" title="Music"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><ellipse cx="11" cy="22" rx="6" ry="5"/><circle cx="4.5" cy="15" r="2.4"/><circle cx="8.5" cy="11" r="2.4"/><circle cx="13.5" cy="11" r="2.4"/><circle cx="17.5" cy="15" r="2.4"/><g class="note"><path d="M21 4.5v12.2a3 3 0 1 0 1.8 2.8V8.2l5.2-1.5V3z"/></g><path class="wave" d="M27 12a4 4 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path class="wave w2" d="M27 12a4 4 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g><path class="mute" d="M3 3 29 29" stroke="#E2725B" stroke-width="2.4" stroke-linecap="round"/></svg></button><a class="btn" href="#contact"><span class="status">Open to roles</span></a></div>
+    <div class="tb-right"><a class="lang" href="zh/" lang="zh-CN" aria-label="中文版">中文</a><button class="bgm-btn" id="bgmToggle" type="button" aria-pressed="false" aria-label="Play music" title="Music"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><ellipse cx="11" cy="22" rx="6" ry="5"/><circle cx="4.5" cy="15" r="2.4"/><circle cx="8.5" cy="11" r="2.4"/><circle cx="13.5" cy="11" r="2.4"/><circle cx="17.5" cy="15" r="2.4"/><g class="note"><path d="M21 4.5v12.2a3 3 0 1 0 1.8 2.8V8.2l5.2-1.5V3z"/></g><path class="wave" d="M27 12a4 4 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path class="wave w2" d="M27 12a4 4 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g><path class="mute" d="M3 3 29 29" stroke="#E2725B" stroke-width="2.4" stroke-linecap="round"/></svg></button><a class="btn" href="#contact"><span class="status">Open to roles</span></a></div>
   </nav>
   <audio id="bgm" src="media/bgm.m4a" preload="auto" loop playsinline></audio>
 
