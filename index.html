@@ -614,6 +614,36 @@ h2 { position: relative; }
 .card .rn-tag { font-size: 11px; bottom: 10px; left: 12px; }
 @media (max-width: 900px) { .bento { grid-auto-rows: auto; } .card, .card.big, .card.wide { min-height: 290px; } }
 @media (max-width: 600px) { .bento { grid-template-columns: minmax(0, 1fr); } .card, .card.big, .card.wide { min-height: 260px; } }
+
+/* upbeat tap version */
+.pup-flip.is-sad .flip-stack { animation: happyhop 1.2s ease-in-out infinite; }
+@keyframes happyhop { 0%, 100% { transform: rotate(0) translateY(0); } 25% { transform: rotate(-2.5deg) translateY(-3px); } 50% { transform: rotate(0) translateY(0); } 75% { transform: rotate(2.5deg) translateY(-3px); } }
+@keyframes squish { 0% { transform: none; } 25% { transform: scale(1.08, .86) translateY(6px); } 55% { transform: scale(.94, 1.08) translateY(-14px); } 80% { transform: scale(1.02, .98) translateY(0); } 100% { transform: none; } }
+.say { background: #FFF7E3; border: 2.5px solid #4A3A2E; border-radius: 14px; padding: 5px 13px 6px; color: #4A3A2E; box-shadow: 3px 3px 0 #EBBE6E; transform: rotate(-3deg) scale(.4); transition: opacity .2s ease, transform .45s cubic-bezier(.3, 1.8, .45, 1); }
+.pup-flip.is-sad .say { transform: rotate(-3deg); }
+.say::after { background: #FFF7E3; border-right: 2.5px solid #4A3A2E; border-bottom: 2.5px solid #4A3A2E; }
+.sleepers .say { transform: translateX(-50%) rotate(-2deg) scale(.4); }
+.pup-flip.is-sad.sleepers .say { transform: translateX(-50%) rotate(-2deg); }
+.confetti { position: absolute; left: 50%; top: 45%; width: 9px; height: 9px; border-radius: 2px; pointer-events: none; z-index: 6; animation: pop 1s cubic-bezier(.2, .8, .3, 1) forwards; }
+.confetti.paw { width: 14px; height: 14px; border-radius: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23D49A3E'%3E%3Cellipse cx='16' cy='21' rx='8' ry='6.5'/%3E%3Ccircle cx='7' cy='12' r='3.4'/%3E%3Ccircle cx='12.5' cy='7' r='3.4'/%3E%3Ccircle cx='19.5' cy='7' r='3.4'/%3E%3Ccircle cx='25' cy='12' r='3.4'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat !important; }
+@keyframes pop { 0% { opacity: 1; transform: translate(-50%, -50%) rotate(0) scale(.4); } 70% { opacity: 1; } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--rot)) scale(1); } }
+.tear { display: none; }
+.sec-head { position: relative; }
+.lab-pup, .work-pup { position: absolute; width: 168px; z-index: 3; margin: 0; }
+.lab-pup { left: 150px; top: -92px; }
+.work-pup { left: 410px; top: -92px; }
+.lab-pup .say, .work-pup .say { left: 150px; top: 18px; }
+.lab-pup .say::after, .work-pup .say::after { left: -7px; bottom: 10px; transform: rotate(135deg); }
+@media (max-width: 900px) {
+  .lab-pup { left: auto; right: 0; top: -56px; width: 108px; }
+  .work-pup { left: auto; right: 0; top: -58px; width: 108px; }
+  .lab-pup .say, .work-pup .say { left: auto; right: 100px; top: -2px; }
+  .lab-pup .say::after, .work-pup .say::after { left: auto; right: -7px; transform: rotate(-45deg); }
+}
+@media (max-width: 600px) {
+  .lab-pup, .work-pup { width: 92px; top: -48px; }
+  #work .sec-head .label { padding-right: 90px; }
+}
 </style>
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -648,8 +678,8 @@ h2 { position: relative; }
     </div>
 
     <div class="gen" id="gen" aria-label="Example: a recruiter's request and three results">
-      <figure class="hero-art pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the puppies" data-say="Hire me… please? 🥺">
-        <span class="flip-stack"><img class="happy" src="media/art/pups-sitting.jpg" alt="Colored-pencil illustration of a Samoyed puppy and a Golden Retriever puppy sitting side by side" width="1100" height="829"><img class="sad" src="media/art/pups-sitting-sad.jpg" alt="" aria-hidden="true"></span>
+      <figure class="hero-art pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the puppies" data-say="Dream team, assembled! 🐾">
+        <span class="flip-stack"><img class="happy" src="media/art/pups-sitting.jpg" alt="Colored-pencil illustration of a Samoyed puppy and a Golden Retriever puppy sitting side by side" width="1100" height="829"><img class="sad" src="media/art/pups-sitting-up.jpg" alt="" aria-hidden="true"></span>
         <span class="say hand" aria-live="polite"></span><span class="tap-hint hand">tap me</span>
         <i class="dash s1"></i><i class="dash s2"></i>
       </figure>
@@ -692,6 +722,7 @@ h2 { position: relative; }
         <h2>AI <span class="it">lab</span></h2>
         <p>Things I made with generative AI that are live right now: a creator account, a product template and an AI-made training video.</p>
       </div>
+      <figure class="side-art lab-pup pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the Samoyed at the laptop" data-say="Prompt in, magic out ✨"><span class="flip-stack"><img class="happy" src="media/art/samoyed-laptop.jpg" alt="Colored-pencil Samoyed puppy typing on a small laptop" loading="lazy" width="800" height="800"><img class="sad" src="media/art/samoyed-laptop-up.jpg" alt="" aria-hidden="true"></span><span class="say hand" aria-live="polite"></span></figure>
       <span class="label">made with AI · shipped</span>
     </div>
     <div class="lab">
@@ -738,7 +769,7 @@ h2 { position: relative; }
 
   <div class="paw-trail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <section class="block" id="work">
-    <div class="sec-head"><h2>Selected <span class="it">work</span></h2><span class="label">4 case studies · tap one to open</span></div>
+    <div class="sec-head"><h2>Selected <span class="it">work</span></h2><figure class="side-art work-pup pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the Golden Retriever with the folder" data-say="Results? Fetched. 📈"><span class="flip-stack"><img class="happy" src="media/art/golden-folder.jpg" alt="Colored-pencil Golden Retriever puppy holding a portfolio folder" loading="lazy" width="800" height="800"><img class="sad" src="media/art/golden-folder-up.jpg" alt="" aria-hidden="true"></span><span class="say hand" aria-live="polite"></span></figure><span class="label">4 case studies · tap one to open</span></div>
     <div class="bento">
       <button class="card big" type="button" data-case="case-renoise">
         <span class="chip">take an AI video tool to the US and Japan</span>
@@ -802,7 +833,7 @@ h2 { position: relative; }
 
   <div class="paw-trail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <section class="block" id="about">
-    <div class="sec-head"><h2>About <span class="it">me</span></h2><figure class="side-art bone pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the Golden Retriever" data-say="I'll trade my bone… just hire me?"><span class="flip-stack"><img class="happy" src="media/art/golden-bone.jpg" alt="Colored-pencil Golden Retriever puppy holding a plush bone" loading="lazy" width="800" height="800"><img class="sad" src="media/art/golden-bone-sad.jpg" alt="" aria-hidden="true" loading="lazy"></span><figcaption class="hand">Fetch!</figcaption><span class="say hand" aria-live="polite"></span></figure></div>
+    <div class="sec-head"><h2>About <span class="it">me</span></h2><figure class="side-art bone pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the Golden Retriever" data-say="Fetched you a winner 🏆"><span class="flip-stack"><img class="happy" src="media/art/golden-bone.jpg" alt="Colored-pencil Golden Retriever puppy holding a plush bone" loading="lazy" width="800" height="800"><img class="sad" src="media/art/golden-bone-up.jpg" alt="" aria-hidden="true"></span><figcaption class="hand">Fetch!</figcaption><span class="say hand" aria-live="polite"></span></figure></div>
     <div class="about">
       <div class="doc">
         <div class="doc-bar"><span class="label">system.md</span><span class="label">last edited Nov 2026</span></div>
@@ -829,7 +860,7 @@ h2 { position: relative; }
   </section>
 
   <section class="contact" id="contact">
-    <figure class="side-art letter pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the Samoyed" data-say="Please read my letter… hire me?"><span class="flip-stack"><img class="happy" src="media/art/samoyed-letter.jpg" alt="Colored-pencil Samoyed puppy holding an envelope" loading="lazy" width="800" height="800"><img class="sad" src="media/art/samoyed-letter-sad.jpg" alt="" aria-hidden="true" loading="lazy"></span><figcaption class="hand">You've got mail <span class="heart">♡</span></figcaption><span class="say hand" aria-live="polite"></span></figure>
+    <figure class="side-art letter pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the Samoyed" data-say="Special delivery: your next hire 💌"><span class="flip-stack"><img class="happy" src="media/art/samoyed-letter.jpg" alt="Colored-pencil Samoyed puppy holding an envelope" loading="lazy" width="800" height="800"><img class="sad" src="media/art/samoyed-letter-up.jpg" alt="" aria-hidden="true"></span><figcaption class="hand">You've got mail <span class="heart">♡</span></figcaption><span class="say hand" aria-live="polite"></span></figure>
     <h2>Have a brief? <span class="it">Let's talk.</span></h2>
     <p>Open to content marketing, social and go-to-market roles. The quickest way to reach me is email.</p>
     <div class="send">
@@ -838,7 +869,7 @@ h2 { position: relative; }
     </div>
   </section>
 
-  <figure class="sleepers pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the sleeping puppies" data-say="You're leaving? Hire me first…"><span class="flip-stack"><img class="happy" src="media/art/pups-sleeping.jpg" alt="Colored-pencil Golden Retriever and Samoyed puppies asleep together" loading="lazy" width="1100" height="733"><img class="sad" src="media/art/pups-sleeping-sad.jpg" alt="" aria-hidden="true" loading="lazy"></span><span class="say hand" aria-live="polite"></span><figcaption class="hand">Sleeping buddies <span class="heart">♡</span> thanks for visiting</figcaption></figure>
+  <figure class="sleepers pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the sleeping puppies" data-say="Fully charged. Let's go! ☕"><span class="flip-stack"><img class="happy" src="media/art/pups-sleeping.jpg" alt="Colored-pencil Golden Retriever and Samoyed puppies asleep together" loading="lazy" width="1100" height="733"><img class="sad" src="media/art/pups-sleeping-up.jpg" alt="" aria-hidden="true"></span><span class="say hand" aria-live="polite"></span><figcaption class="hand">Sleeping buddies <span class="heart">♡</span> thanks for visiting</figcaption></figure>
   <footer><span class="label">© 2026 Yvony Yang</span><span class="label">Made by hand, supervised by two very good dogs</span></footer>
 </div>
 
@@ -1067,12 +1098,16 @@ h2 { position: relative; }
       clearTimeout(timer);
       if (sad) {
         if (!reduceM) {
-          var st = p.querySelector('.flip-stack'), r = st.getBoundingClientRect(), pr = p.getBoundingClientRect();
-          for (var k = 0; k < 2; k++) (function (k) { setTimeout(function () {
-            var t = document.createElement('i'); t.className = 'tear';
-            t.style.left = (r.left - pr.left + r.width * (0.36 + 0.28 * k)) + 'px'; t.style.top = (r.top - pr.top + r.height * 0.42) + 'px';
-            p.appendChild(t); setTimeout(function () { t.remove(); }, 1000);
-          }, 250 + k * 320); })(k);
+          var cols = ['#EBBE6E', '#EFB4A0', '#FFF7E3', '#D49A3E', '#F6D9A0'];
+          for (var k = 0; k < 18; k++) {
+            var c = document.createElement('i'); c.className = 'confetti' + (k % 5 === 0 ? ' paw' : '');
+            var ang = Math.random() * 6.283, dist = 60 + Math.random() * 70;
+            c.style.setProperty('--dx', Math.cos(ang) * dist + 'px'); c.style.setProperty('--dy', (Math.sin(ang) * dist - 30) + 'px');
+            c.style.setProperty('--rot', (Math.random() * 540 - 270) + 'deg');
+            c.style.background = cols[k % cols.length]; if (k % 3 === 0) c.style.borderRadius = '50%';
+            c.style.animationDelay = (Math.random() * 0.08) + 's';
+            p.appendChild(c); setTimeout(function (c) { return function () { c.remove(); }; }(c), 1150);
+          }
         }
         timer = setTimeout(function () { if (p.classList.contains('is-sad')) toggle(); }, 6000);
       }
