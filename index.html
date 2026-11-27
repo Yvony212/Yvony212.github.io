@@ -654,8 +654,11 @@ h2 { position: relative; }
 
 /* work-card images keep their height on phones and tablets */
 @media (max-width: 900px) {
-  .bento .card .art { flex: none; height: auto; aspect-ratio: 16 / 9; min-height: 0; }
-  .bento .card { min-height: 0; }
+  .bento .card { min-height: 0; display: block; }
+  .bento .card > * + * { margin-top: 10px; }
+  .bento .card .art { flex: none; height: auto; min-height: 0; display: block; }
+  .bento .card .art > img.cover { position: static; display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .bento .card .renoise-art { aspect-ratio: 16 / 9; display: grid; }
 }
 </style>
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -794,7 +797,7 @@ h2 { position: relative; }
       </button>
       <button class="card wide" type="button" data-case="case-brand">
         <span class="chip">launch two challenger brands in elevators</span>
-        <div class="art"><div class="decks"><img src="media/deck-chencun.jpg" alt=""><img src="media/deck-kingsanhon.jpg" alt=""></div></div>
+        <div class="art"><img class="cover" src="media/brand-cover.jpg" alt="" width="1280" height="720"></div>
         <div class="card-foot">
           <div><h3>Brand launch strategies</h3><span class="label">Focus Media · 2024</span></div>
           <div class="stat"><b>2</b><span>brand plans</span></div>
@@ -802,7 +805,7 @@ h2 { position: relative; }
       </button>
       <button class="card" type="button" data-case="case-sf">
         <span class="chip">make couriers the story</span>
-        <div class="art"><img src="media/sf-ai-poster.jpg" alt=""><span class="shade"></span><span class="big-word">SF Courier Says</span></div>
+        <div class="art"><img class="cover" src="media/sf-ai-poster.jpg" alt=""><span class="shade"></span><span class="big-word">SF Courier Says</span></div>
         <div class="card-foot">
           <div><h3>SF Express</h3><span class="label">29 videos · Douyin</span></div>
           <div class="stat"><b>740K</b><span>likes</span></div>
@@ -810,7 +813,7 @@ h2 { position: relative; }
       </button>
       <button class="card" type="button" data-case="case-ronghua">
         <span class="chip">bring velvet flowers to London</span>
-        <div class="art"><img src="media/ronghua-poster.jpg" alt=""><span class="shade"></span><span class="big-word">Re-Flourishing</span></div>
+        <div class="art"><img class="cover" src="media/ronghua-poster.jpg" alt=""><span class="shade"></span><span class="big-word">Re-Flourishing</span></div>
         <div class="card-foot">
           <div><h3>Exhibition</h3><span class="label">KCL · 2024</span></div>
           <div class="stat"><b>60s</b><span>film</span></div>
