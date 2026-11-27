@@ -624,9 +624,9 @@ h2 { position: relative; }
 .say::after { background: #FFF7E3; border-right: 2.5px solid #4A3A2E; border-bottom: 2.5px solid #4A3A2E; }
 .sleepers .say { transform: translateX(-50%) rotate(-2deg) scale(.4); }
 .pup-flip.is-sad.sleepers .say { transform: translateX(-50%) rotate(-2deg); }
-.confetti { position: absolute; left: 50%; top: 45%; width: 9px; height: 9px; border-radius: 2px; pointer-events: none; z-index: 6; animation: pop 1s cubic-bezier(.2, .8, .3, 1) forwards; }
+.confetti { position: absolute; left: 50%; top: 45%; width: 9px; height: 9px; border-radius: 2px; pointer-events: none; z-index: 6; animation: confettipop 1s cubic-bezier(.2, .8, .3, 1) forwards; }
 .confetti.paw { width: 14px; height: 14px; border-radius: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23D49A3E'%3E%3Cellipse cx='16' cy='21' rx='8' ry='6.5'/%3E%3Ccircle cx='7' cy='12' r='3.4'/%3E%3Ccircle cx='12.5' cy='7' r='3.4'/%3E%3Ccircle cx='19.5' cy='7' r='3.4'/%3E%3Ccircle cx='25' cy='12' r='3.4'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat !important; }
-@keyframes pop { 0% { opacity: 1; transform: translate(-50%, -50%) rotate(0) scale(.4); } 70% { opacity: 1; } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--rot)) scale(1); } }
+@keyframes confettipop { 0% { opacity: 1; transform: translate(-50%, -50%) rotate(0) scale(.4); } 70% { opacity: 1; } 100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(var(--rot)) scale(1); } }
 .tear { display: none; }
 .sec-head { position: relative; }
 .lab-pup, .work-pup { position: absolute; width: 168px; z-index: 3; margin: 0; }
@@ -651,6 +651,12 @@ h2 { position: relative; }
 .pup-flip[data-mood="plead"] .tear { display: block; }
 .pup-flip[data-mood="plead"] .say { background: #fff; box-shadow: 0 10px 22px -14px rgba(120, 90, 50, .55); border: 2px solid #EBDCC6; color: #5E4A3A; }
 .pup-flip[data-mood="plead"] .say::after { background: #fff; border-right: 2px solid #EBDCC6; border-bottom: 2px solid #EBDCC6; }
+
+/* work-card images keep their height on phones and tablets */
+@media (max-width: 900px) {
+  .bento .card .art { flex: none; height: auto; aspect-ratio: 16 / 9; min-height: 0; }
+  .bento .card { min-height: 0; }
+}
 </style>
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
