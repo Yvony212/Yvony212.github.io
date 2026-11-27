@@ -688,26 +688,35 @@ q { quotes: "“" "”"; }
 
 /* Feedback board */
 .fb { margin-top: 40px; }
-.fb-card { position: relative; background: var(--panel); border: 2px dashed var(--fur-line); border-radius: 28px; padding: clamp(20px, 4vw, 32px); max-width: 680px; margin: 0 auto; display: grid; gap: 14px; }
-.fb-card h3 { font-family: var(--serif); font-size: clamp(22px, 3.4vw, 30px); line-height: 1.15; margin: 0; font-weight: 600; }
-.fb-votes { display: flex; gap: 10px; flex-wrap: wrap; }
-.vote { flex: 1 1 0; min-width: 0; white-space: nowrap; line-height: 1.2; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 10px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--canvas); color: var(--ink); font: inherit; font-weight: 700; cursor: pointer; transition: transform .2s, border-color .2s; }
-.vote .emo { font-size: 22px; line-height: 1; }
+.fb-card { position: relative; background: var(--panel); border: 2px dashed var(--fur-line); border-radius: 32px; padding: clamp(22px, 4.5vw, 44px); max-width: 760px; margin: 0 auto; box-shadow: 0 18px 40px -30px rgba(150, 90, 20, .45); }
+.fb-card h3 { font-family: var(--serif); font-size: clamp(26px, 4vw, 38px); line-height: 1.1; margin: 6px 0 4px; font-weight: 600; }
+.fb-sub { color: var(--muted); margin: 0 0 18px; }
+.fb-votes { display: flex; gap: 12px; }
+.vote { flex: 1 1 0; display: grid; place-items: center; height: 68px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--canvas); cursor: pointer; font-size: 32px; line-height: 1; transition: transform .2s, border-color .2s, background .2s; }
 .vote:hover { border-color: var(--honey); transform: translateY(-2px); }
-.fb-done { margin: 0; padding: 12px 16px; border-radius: 18px; background: var(--cobalt-soft); font-weight: 700; animation: fbpop .5s cubic-bezier(.3, 1.6, .5, 1); }
-.fb-note { display: flex; gap: 10px; align-items: flex-end; }
-.fb-note textarea { flex: 1; min-width: 0; font: inherit; color: var(--ink); resize: vertical; min-height: 46px; height: 46px; padding: 11px 14px; border: 1.5px solid var(--line); border-radius: 18px; background: var(--canvas); }
-.fb-note textarea:focus { outline: none; border-color: var(--gold); background: #fff; height: 92px; }
-.fb-send { flex: none; border: 0; border-radius: 999px; padding: 12px 20px; font: inherit; font-weight: 800; background: var(--honey); color: var(--ink); cursor: pointer; }
-.fb-send:disabled { opacity: .6; cursor: wait; }
-.fb-msg { color: #C0533A; font-size: 14px; margin: -6px 0 0; min-height: 0; }
-.fb-msg:empty { display: none; }
+.vote:hover span { display: inline-block; animation: fbwiggle .5s ease; }
+.vote:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 2px; }
+.vote:disabled { cursor: wait; opacity: .6; }
+.fb-voted { display: flex; align-items: center; gap: 14px; padding: 10px 16px 10px 10px; border-radius: 999px; background: var(--cobalt-soft); animation: fbpop .5s cubic-bezier(.3, 1.6, .5, 1); }
+.fb-voted img { flex: none; width: 64px; height: 64px; border-radius: 50%; object-fit: cover; background: #fff; animation: fbhop 1s cubic-bezier(.3, 1.6, .5, 1) both; }
+.fb-voted p { margin: 0; font-weight: 700; line-height: 1.4; }
+.fb-note { display: grid; gap: 6px; margin-top: 18px; }
+.fb-note textarea { font: inherit; color: var(--ink); width: 100%; resize: vertical; min-height: 92px; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 18px; background: var(--canvas); }
+.fb-note textarea:focus { outline: none; border-color: var(--gold); background: #fff; }
+.fb-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 14px; }
+.fb-send { border: 0; border-radius: 999px; padding: 12px 22px; font: inherit; font-weight: 800; background: var(--honey); color: var(--ink); cursor: pointer; transition: transform .2s; }
+.fb-send:hover { transform: translateY(-2px) rotate(-1deg); }
+.fb-send:disabled { opacity: .6; cursor: wait; transform: none; }
+.fb-msg { color: #C0533A; font-size: 14px; }
+.fb-sent { margin: 18px 0 0; padding: 14px 18px; border-radius: 18px; background: var(--cobalt-soft); font-weight: 700; text-align: center; animation: fbpop .5s cubic-bezier(.3, 1.6, .5, 1); }
 .fb-hp { display: none; }
 .fb-card .confetti { top: 30%; }
 .fb-shake { animation: fbshake .4s ease; }
 @keyframes fbpop { 0% { transform: scale(.92); opacity: 0; } 60% { transform: scale(1.03); opacity: 1; } 100% { transform: none; } }
 @keyframes fbshake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
-@media (prefers-reduced-motion: reduce) { .fb-done, .fb-shake { animation: none; } }
+@keyframes fbhop { 0% { transform: translateY(16px) scale(.6); opacity: 0; } 60% { transform: translateY(-6px) scale(1.06); opacity: 1; } 100% { transform: none; } }
+@keyframes fbwiggle { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-14deg) scale(1.15); } 60% { transform: rotate(10deg) scale(1.1); } }
+@media (prefers-reduced-motion: reduce) { .fb-voted, .fb-voted img, .fb-sent, .fb-shake, .vote:hover span { animation: none; } }
 
 /* BGM toggle */
 .tb-right { display: flex; align-items: center; gap: 8px; }
@@ -973,13 +982,17 @@ var _hmt = _hmt || [];
       <input type="hidden" name="lang" value="zh">
       <input type="hidden" name="rating" value="">
       <p class="fb-hp"><label>Leave empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <span class="label">留言板</span>
       <h3 id="fb-h">看完感觉怎么样？</h3>
+      <p class="fb-sub">点一下就够啦，愿意多说两句就更好了。</p>
       <div class="fb-votes" role="group" aria-label="给这个作品集打分">
-        <button type="button" class="vote" data-rating="good"><span class="emo" aria-hidden="true">👍</span>不错哦</button>
-        <button type="button" class="vote" data-rating="not-good"><span class="emo" aria-hidden="true">👎</span>还差点意思</button>
+        <button type="button" class="vote" data-rating="good" aria-label="不错哦" title="不错哦"><span aria-hidden="true">👍</span></button>
+        <button type="button" class="vote" data-rating="not-good" aria-label="还差点意思" title="还差点意思"><span aria-hidden="true">👎</span></button>
       </div>
-      <div class="fb-note"><textarea name="message" rows="1" maxlength="800" placeholder="想说点什么？（选填）" aria-label="想说点什么？（选填）"></textarea><button type="submit" class="fb-send">提交</button></div>
-      <p class="fb-msg" aria-live="polite"></p>
+      <div class="fb-notebox">
+        <label class="fb-note"><span class="label">想说点什么？（选填）</span><textarea name="message" rows="3" maxlength="800" placeholder="哪里让你印象深刻、哪里可以改进，或者你觉得我适合什么岗位…"></textarea></label>
+        <div class="fb-row"><button type="submit" class="fb-send">送出反馈 🐾</button><span class="fb-msg" aria-live="polite"></span></div>
+      </div>
     </form>
   </section>
 
@@ -1303,11 +1316,12 @@ var _hmt = _hmt || [];
 <script>
 (function () {
   var form = document.getElementById('fb-form'); if (!form) return;
-  var votes = form.querySelector('.fb-votes'), note = form.querySelector('.fb-note'), ta = form.message, btn = form.querySelector('.fb-send'), msg = form.querySelector('.fb-msg');
+  var votes = form.querySelector('.fb-votes'), box = form.querySelector('.fb-notebox'), ta = form.message, btn = form.querySelector('.fb-send'), msg = form.querySelector('.fb-msg');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var S = { empty: '先写点什么吧', sending: '发送中…', send: '提交', good: '收到你的点赞！尾巴已经摇成螺旋桨了 🐾', bad: '收到！我这就去改进，改好再叼回来 🦴', sent: '你的留言已送达，谢谢你 💌', err: '网络开小差了，请再试一次。' };
+  var IMG = '../media/art/golden-bone-up.jpg';
+  var S = { empty: '先写点什么吧', sending: '发送中…', send: '送出反馈 🐾', good: '收到你的点赞！尾巴已经摇成螺旋桨了 🐾', bad: '谢谢你的真话！我这就去改，改好再叼回来给你看 🦴', sent: '你的留言已送达，谢谢你 💌', err: '网络开小差了，请再试一次。' };
   function post(fields) {
-    var fd = new URLSearchParams({ 'form-name': 'feedback', lang: form.elements['lang'].value, 'bot-field': form['bot-field'].value });
+    var fd = new URLSearchParams({ 'form-name': 'feedback', lang: form.elements['lang'].value, 'bot-field': form.elements['bot-field'].value });
     for (var k in fields) fd.set(k, fields[k]);
     var onNetlify = /netlify\.app$/.test(location.hostname);
     return fetch(onNetlify ? '/' : 'https://yvony-yang.netlify.app/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString(), mode: onNetlify ? 'same-origin' : 'no-cors' })
@@ -1316,9 +1330,9 @@ var _hmt = _hmt || [];
   function burst(near) {
     if (reduce) return;
     var cols = ['#EBBE6E', '#EFB4A0', '#B5782E', '#FFE6B8', '#E8A54B'], top = near.offsetTop + near.offsetHeight / 2;
-    for (var k = 0; k < 22; k++) {
+    for (var k = 0; k < 24; k++) {
       var c = document.createElement('i'); c.className = 'confetti' + (k % 4 === 0 ? ' paw' : '');
-      var ang = Math.random() * Math.PI * 2, dist = 70 + Math.random() * 130;
+      var ang = Math.random() * Math.PI * 2, dist = 80 + Math.random() * 150;
       c.style.top = top + 'px';
       c.style.setProperty('--dx', Math.cos(ang) * dist + 'px'); c.style.setProperty('--dy', (Math.sin(ang) * dist - 30) + 'px');
       c.style.setProperty('--rot', (Math.random() * 540 - 270) + 'deg');
@@ -1326,14 +1340,17 @@ var _hmt = _hmt || [];
       form.appendChild(c); setTimeout(function (el) { el.remove(); }, 1300, c);
     }
   }
-  function done(el, text) { var p = document.createElement('p'); p.className = 'fb-done'; p.textContent = text; el.replaceWith(p); burst(p); return p; }
   function track(a, b) { try { if (window._hmt) _hmt.push(['_trackEvent', 'feedback', a, b || '']); } catch (e) {} }
   votes.addEventListener('click', function (e) {
     var b = e.target.closest('.vote'); if (!b) return;
     var r = b.getAttribute('data-rating');
     votes.querySelectorAll('.vote').forEach(function (x) { x.disabled = true; });
     post({ rating: r }).then(function () {
-      form.rating.value = r; done(votes, r === 'good' ? S.good : S.bad); track('vote', r);
+      form.elements['rating'].value = r;
+      var d = document.createElement('div'); d.className = 'fb-voted'; d.setAttribute('aria-live', 'polite');
+      var im = document.createElement('img'); im.src = IMG; im.alt = ''; im.width = 64; im.height = 64;
+      var p = document.createElement('p'); p.textContent = r === 'good' ? S.good : S.bad;
+      d.appendChild(im); d.appendChild(p); votes.replaceWith(d); burst(d); track('vote', r);
     }).catch(function () {
       votes.querySelectorAll('.vote').forEach(function (x) { x.disabled = false; }); msg.textContent = S.err;
     });
@@ -1341,10 +1358,11 @@ var _hmt = _hmt || [];
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var text = ta.value.trim();
-    if (!text) { msg.textContent = S.empty; note.classList.remove('fb-shake'); void note.offsetWidth; note.classList.add('fb-shake'); ta.focus(); return; }
+    if (!text) { msg.textContent = S.empty; box.classList.remove('fb-shake'); void box.offsetWidth; box.classList.add('fb-shake'); ta.focus(); return; }
     btn.disabled = true; btn.textContent = S.sending; msg.textContent = '';
-    post({ message: text, rating: form.rating.value }).then(function () {
-      done(note, S.sent); track('note');
+    post({ message: text, rating: form.elements['rating'].value }).then(function () {
+      var p = document.createElement('p'); p.className = 'fb-sent'; p.setAttribute('aria-live', 'polite'); p.textContent = S.sent;
+      box.replaceWith(p); burst(p); track('note');
     }).catch(function () { btn.disabled = false; btn.textContent = S.send; msg.textContent = S.err; });
   });
   ta.addEventListener('input', function () { msg.textContent = ''; });
