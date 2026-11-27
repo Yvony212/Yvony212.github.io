@@ -331,7 +331,7 @@ dialog::backdrop { background: rgba(10, 11, 16, .55); backdrop-filter: blur(4px)
 @media (max-width: 600px) {
   .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .toolbar { padding: 6px 6px 6px 10px; gap: 6px; }
-  .toolbar > .btn { display: none; }
+  .toolbar .tb-right > .btn { display: none; }
   .brand { font-size: 14px; gap: 7px; }
   .brand .spark { width: 18px; height: 18px; border-radius: 6px; }
   .tabs a { font-size: 13px; padding: 6px 6px; }
@@ -660,6 +660,23 @@ h2 { position: relative; }
   .bento .card .art > img.cover { position: static; display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
   .bento .card .renoise-art { aspect-ratio: 16 / 9; display: grid; }
 }
+
+/* BGM toggle */
+.tb-right { display: flex; align-items: center; gap: 8px; }
+.bgm-btn { position: relative; width: 38px; height: 38px; flex: none; display: grid; place-items: center; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; cursor: pointer; padding: 0; color: var(--ink); transition: transform .2s, border-color .2s; }
+.bgm-btn:hover { border-color: var(--muted); transform: rotate(-8deg) scale(1.06); }
+.bgm-btn svg { width: 22px; height: 22px; overflow: visible; }
+.bgm-btn .note { transform-origin: 22px 6px; }
+.bgm-btn .wave { opacity: 0; }
+.bgm-btn .mute { opacity: 1; transition: opacity .2s; }
+.bgm-btn.on .mute { opacity: 0; }
+.bgm-btn.on .note { animation: bgmbob 1.1s ease-in-out infinite; }
+.bgm-btn.on .wave { animation: bgmwave 1.6s ease-out infinite; }
+.bgm-btn.on .wave.w2 { animation-delay: .8s; }
+@keyframes bgmbob { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-2.5px) rotate(-10deg); } }
+@keyframes bgmwave { 0% { opacity: .8; transform: translate(0,0) scale(.6); } 100% { opacity: 0; transform: translate(4px,-7px) scale(1.2); } }
+@media (max-width: 600px) { .bgm-btn { width: 34px; height: 34px; } .bgm-btn svg { width: 20px; height: 20px; } .tb-right { gap: 0; } }
+@media (prefers-reduced-motion: reduce) { .bgm-btn.on .note, .bgm-btn.on .wave { animation: none; } }
 </style>
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -675,8 +692,9 @@ h2 { position: relative; }
       <a href="#outputs">Outputs</a>
       <a href="#about">About</a>
     </div>
-    <a class="btn" href="#contact"><span class="status">Open to roles</span></a>
+    <div class="tb-right"><button class="bgm-btn" id="bgmToggle" type="button" aria-pressed="false" aria-label="Play music" title="Music"><svg viewBox="0 0 32 32" aria-hidden="true"><g fill="currentColor"><ellipse cx="11" cy="22" rx="6" ry="5"/><circle cx="4.5" cy="15" r="2.4"/><circle cx="8.5" cy="11" r="2.4"/><circle cx="13.5" cy="11" r="2.4"/><circle cx="17.5" cy="15" r="2.4"/><g class="note"><path d="M21 4.5v12.2a3 3 0 1 0 1.8 2.8V8.2l5.2-1.5V3z"/></g><path class="wave" d="M27 12a4 4 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path class="wave w2" d="M27 12a4 4 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g><path class="mute" d="M3 3 29 29" stroke="#E2725B" stroke-width="2.4" stroke-linecap="round"/></svg></button><a class="btn" href="#contact"><span class="status">Open to roles</span></a></div>
   </nav>
+  <audio id="bgm" src="media/bgm.m4a" preload="auto" loop playsinline></audio>
 
   <header class="hero" id="top">
     <canvas class="fluff" aria-hidden="true"></canvas>
@@ -1181,5 +1199,26 @@ h2 { position: relative; }
 })();
 </script>
 
+<script>
+(function () {
+  var a = document.getElementById('bgm'), b = document.getElementById('bgmToggle');
+  if (!a || !b) return;
+  var KEY = 'yvony-bgm-muted', muted = false, evs = ['pointerdown', 'pointerup', 'touchend', 'keydown', 'click'];
+  try { muted = localStorage.getItem(KEY) === '1'; } catch (e) {}
+  try { a.volume = 0.8; } catch (e) {}
+  function ui(on) { b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.setAttribute('aria-label', on ? 'Pause music' : 'Play music'); }
+  function save(m) { try { localStorage.setItem(KEY, m ? '1' : '0'); } catch (e) {} }
+  function detach() { evs.forEach(function (ev) { document.removeEventListener(ev, onFirst, true); }); }
+  function start() { var p = a.play(); if (p && p.then) p.then(detach).catch(function () { ui(false); }); }
+  function onFirst(e) { if (b.contains(e.target)) return; if (!muted && a.paused) start(); }
+  a.addEventListener('play', function () { ui(true); });
+  a.addEventListener('pause', function () { ui(false); });
+  b.addEventListener('click', function () {
+    if (a.paused) { muted = false; save(false); start(); }
+    else { muted = true; save(true); a.pause(); detach(); }
+  });
+  if (!muted) { evs.forEach(function (ev) { document.addEventListener(ev, onFirst, true); }); start(); }
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,25 @@
+plugins = []
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "/Users/a13451770212/Library/Application Support/Claude/scratch-workspaces/e7cf7a8f-e5cd-4be0-ba11-a49fa906ea51/bc19b2a8-995b-46e1-9043-29baf6ddd4a8/scratch-2026-11-26-452c88/site"
+publishOrigin = "default"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
