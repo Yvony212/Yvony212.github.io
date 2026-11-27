@@ -706,6 +706,13 @@ q { quotes: "“" "”"; }
 <script>
 var _hmt = _hmt || [];
 (function() {
+  // Owner opt-out: open the site once with ?me on your own device to stop counting it; ?notme to undo.
+  try {
+    var q = location.search;
+    if (/[?&]me(&|=|$)/.test(q)) localStorage.setItem('yvony-me', '1');
+    if (/[?&]notme(&|=|$)/.test(q)) localStorage.removeItem('yvony-me');
+    if (localStorage.getItem('yvony-me') === '1') return;
+  } catch (e) {}
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?929d67b3adce080a4d1c5f489b69e21e";
   var s = document.getElementsByTagName("script")[0];
