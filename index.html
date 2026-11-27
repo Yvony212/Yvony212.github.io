@@ -552,6 +552,58 @@ h2 { position: relative; }
   .side-art.letter figcaption { right: 130px; top: 40px; font-size: 18px; }
   .sleepers { max-width: 300px; }
 }
+
+/* tap-to-change puppies */
+.pup-flip { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.pup-flip:focus-visible { outline: 3px dashed var(--honey); outline-offset: 6px; border-radius: 20px; }
+.flip-stack { position: relative; display: block; }
+.flip-stack img { transition: opacity .35s ease; }
+.flip-stack img.sad { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
+.pup-flip.is-sad .flip-stack img.sad { opacity: 1; }
+.pup-flip.is-sad .flip-stack img.happy { opacity: 0; }
+.pup-flip .flip-stack { transform-origin: 50% 90%; }
+.pup-flip.squish .flip-stack { animation: squish .55s cubic-bezier(.3, 1.5, .5, 1); }
+@keyframes squish { 0% { transform: none; } 30% { transform: scale(1.06, .9) translateY(4px); } 60% { transform: scale(.97, 1.05) translateY(-6px); } 100% { transform: none; } }
+.pup-flip.is-sad .flip-stack { animation: sniffle 1.4s ease-in-out infinite; }
+.pup-flip.is-sad.squish .flip-stack { animation: squish .55s cubic-bezier(.3, 1.5, .5, 1); }
+@keyframes sniffle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-1.4deg) translateY(1px); } 75% { transform: rotate(1.4deg) translateY(1px); } }
+.hero-art img, .side-art img, .sleepers img { animation: none; }
+.pup-flip:not(.is-sad) .flip-stack { animation: breathe 3.6s ease-in-out infinite; }
+.pup-flip.squish:not(.is-sad) .flip-stack { animation: squish .55s cubic-bezier(.3, 1.5, .5, 1); }
+.say { position: absolute; z-index: 5; background: #fff; border: 2px solid #EBDCC6; border-radius: 18px; padding: 6px 13px; font-size: 19px; line-height: 1.2; color: #5E4A3A; white-space: nowrap; box-shadow: 0 10px 22px -14px rgba(120, 90, 50, .55); opacity: 0; transform: scale(.6) translateY(8px); transition: opacity .25s ease, transform .35s cubic-bezier(.3, 1.6, .5, 1); pointer-events: none; }
+.pup-flip.is-sad .say { opacity: 1; transform: none; }
+.say::after { content: ""; position: absolute; bottom: -8px; width: 14px; height: 14px; background: #fff; border-right: 2px solid #EBDCC6; border-bottom: 2px solid #EBDCC6; transform: rotate(45deg); }
+.hero-art .say { right: 62%; top: 26px; }
+.hero-art .say::after { right: 18px; transform: rotate(-20deg) skewX(20deg); }
+.side-art.bone .say { left: 116px; top: -16px; }
+.side-art.bone .say::after { left: 16px; }
+.side-art.letter .say { right: 150px; top: 6px; }
+.side-art.letter .say::after { right: 16px; }
+.sleepers .say { left: 50%; top: -10px; transform: translateX(-50%) scale(.6); }
+.pup-flip.is-sad.sleepers .say { transform: translateX(-50%); }
+.sleepers .say::after { left: calc(50% - 7px); }
+.side-art figcaption, .sleepers figcaption { transition: opacity .2s ease; }
+.pup-flip.is-sad figcaption { opacity: 0; }
+.tap-hint { position: absolute; left: 6px; bottom: 26px; font-size: 18px; color: #B08A63; transform: rotate(-8deg); animation: hint 2.2s ease-in-out infinite; }
+.tap-hint::before { content: "↗ "; }
+.pup-flip.is-sad .tap-hint, .pup-flip.tapped .tap-hint { opacity: 0; animation: none; }
+@keyframes hint { 0%, 100% { transform: rotate(-8deg) translateY(0); } 50% { transform: rotate(-8deg) translateY(-4px); } }
+.tear { position: absolute; width: 7px; height: 10px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: rgba(140, 190, 230, .85); pointer-events: none; z-index: 4; animation: tear 1s ease-in forwards; }
+@keyframes tear { 0% { opacity: 0; transform: translateY(0) scale(.6); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateY(26px) scale(1); } }
+.sleepers::after { display: none; }
+.sleepers:not(.is-sad)::before { content: "z"; position: absolute; right: 70px; top: 30px; font-family: var(--hand); font-weight: 700; font-size: 22px; color: #B79A7E; animation: zzz 3s ease-in infinite; z-index: 3; }
+@media (max-width: 900px) {
+  .hero-art .say { right: auto; left: 50%; top: -30px; transform: translateX(-50%) scale(.6); font-size: 17px; }
+  .pup-flip.is-sad.hero-art .say { transform: translateX(-50%); }
+  .hero-art .say::after { left: calc(50% - 7px); right: auto; transform: rotate(45deg); }
+  .side-art.bone .say { left: auto; right: 30px; top: -44px; font-size: 16px; }
+  .side-art.bone .say::after { left: auto; right: 16px; }
+}
+@media (max-width: 600px) {
+  .side-art.letter .say { right: 100px; top: -4px; font-size: 16px; white-space: normal; width: 170px; }
+  .side-art.bone .say { white-space: normal; width: 180px; }
+  .say { font-size: 16px; }
+}
 </style>
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -588,12 +640,11 @@ h2 { position: relative; }
     </div>
 
     <div class="gen" id="gen" aria-label="Example: a recruiter's request and three results">
-      <figure class="hero-art">
-        <img src="media/art/pups-sitting.jpg" alt="Colored-pencil illustration of a Samoyed puppy and a Golden Retriever puppy sitting side by side" width="1100" height="829">
+      <figure class="hero-art pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the puppies" data-say="Hire her… please? 🥺">
+        <span class="flip-stack"><img class="happy" src="media/art/pups-sitting.jpg" alt="Colored-pencil illustration of a Samoyed puppy and a Golden Retriever puppy sitting side by side" width="1100" height="829"><img class="sad" src="media/art/pups-sitting-sad.jpg" alt="" aria-hidden="true"></span>
+        <span class="say hand" aria-live="polite"></span><span class="tap-hint hand">tap me</span>
         <i class="dash s1"></i><i class="dash s2"></i>
-        <figcaption class="hand">Two good dogs <span class="heart">♡</span></figcaption>
       </figure>
-      <div class="bubble hand" aria-hidden="true">Woof! She's a great hire.</div>
       <div class="gen-bar">
         <span class="label">new_fetch</span>
         <span class="model">yvony-2027 ▾</span>
@@ -743,7 +794,7 @@ h2 { position: relative; }
 
   <div class="paw-trail" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   <section class="block" id="about">
-    <div class="sec-head"><h2>About <span class="it">me</span></h2><figure class="side-art bone"><img src="media/art/golden-bone.jpg" alt="Colored-pencil Golden Retriever puppy holding a plush bone" loading="lazy" width="800" height="800"><figcaption class="hand">Fetch!</figcaption></figure><span class="label">Studied in London and Hong Kong</span></div>
+    <div class="sec-head"><h2>About <span class="it">me</span></h2><figure class="side-art bone pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the Golden Retriever" data-say="I'll trade my bone for an interview…"><span class="flip-stack"><img class="happy" src="media/art/golden-bone.jpg" alt="Colored-pencil Golden Retriever puppy holding a plush bone" loading="lazy" width="800" height="800"><img class="sad" src="media/art/golden-bone-sad.jpg" alt="" aria-hidden="true" loading="lazy"></span><figcaption class="hand">Fetch!</figcaption><span class="say hand" aria-live="polite"></span></figure><span class="label">Studied in London and Hong Kong</span></div>
     <div class="about">
       <div class="doc">
         <div class="doc-bar"><span class="label">system.md</span><span class="label">last edited Nov 2026</span></div>
@@ -770,7 +821,7 @@ h2 { position: relative; }
   </section>
 
   <section class="contact" id="contact">
-    <figure class="side-art letter"><img src="media/art/samoyed-letter.jpg" alt="Colored-pencil Samoyed puppy holding an envelope" loading="lazy" width="800" height="800"><figcaption class="hand">You've got mail <span class="heart">♡</span></figcaption></figure>
+    <figure class="side-art letter pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the Samoyed" data-say="Please read my letter… hire me?"><span class="flip-stack"><img class="happy" src="media/art/samoyed-letter.jpg" alt="Colored-pencil Samoyed puppy holding an envelope" loading="lazy" width="800" height="800"><img class="sad" src="media/art/samoyed-letter-sad.jpg" alt="" aria-hidden="true" loading="lazy"></span><figcaption class="hand">You've got mail <span class="heart">♡</span></figcaption><span class="say hand" aria-live="polite"></span></figure>
     
     <span class="label" style="color:#9097A8">send_prompt</span>
     <h2>Have a brief? <span class="it">Let's talk.</span></h2>
@@ -781,7 +832,7 @@ h2 { position: relative; }
     </div>
   </section>
 
-  <figure class="sleepers"><img src="media/art/pups-sleeping.jpg" alt="Colored-pencil Golden Retriever and Samoyed puppies asleep together" loading="lazy" width="1100" height="733"><figcaption class="hand">Sleeping buddies <span class="heart">♡</span> thanks for visiting</figcaption></figure>
+  <figure class="sleepers pup-flip" role="button" tabindex="0" aria-pressed="false" aria-label="Tap the sleeping puppies" data-say="You're leaving? Hire her first…"><span class="flip-stack"><img class="happy" src="media/art/pups-sleeping.jpg" alt="Colored-pencil Golden Retriever and Samoyed puppies asleep together" loading="lazy" width="1100" height="733"><img class="sad" src="media/art/pups-sleeping-sad.jpg" alt="" aria-hidden="true" loading="lazy"></span><span class="say hand" aria-live="polite"></span><figcaption class="hand">Sleeping buddies <span class="heart">♡</span> thanks for visiting</figcaption></figure>
   <footer><span class="label">© 2026 Yvony Yang</span><span class="label">Made by hand, supervised by two very good dogs</span></footer>
 </div>
 
@@ -997,8 +1048,31 @@ h2 { position: relative; }
 
   /* puppy theme interactions */
   var reduceM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('.hero-art').forEach(function (p) {
-    p.addEventListener('click', function () { p.classList.remove('jump'); void p.getBoundingClientRect(); p.classList.add('jump'); });
+  document.querySelectorAll('.pup-flip').forEach(function (p) {
+    var say = p.querySelector('.say'), timer = null;
+    function toggle() {
+      var sad = !p.classList.contains('is-sad');
+      p.classList.add('tapped');
+      p.classList.remove('squish'); void p.offsetWidth; p.classList.add('squish');
+      setTimeout(function () { p.classList.remove('squish'); }, 600);
+      p.classList.toggle('is-sad', sad);
+      p.setAttribute('aria-pressed', sad ? 'true' : 'false');
+      if (say) say.textContent = sad ? p.getAttribute('data-say') : '';
+      clearTimeout(timer);
+      if (sad) {
+        if (!reduceM) {
+          var st = p.querySelector('.flip-stack'), r = st.getBoundingClientRect(), pr = p.getBoundingClientRect();
+          for (var k = 0; k < 2; k++) (function (k) { setTimeout(function () {
+            var t = document.createElement('i'); t.className = 'tear';
+            t.style.left = (r.left - pr.left + r.width * (0.36 + 0.28 * k)) + 'px'; t.style.top = (r.top - pr.top + r.height * 0.42) + 'px';
+            p.appendChild(t); setTimeout(function () { t.remove(); }, 1000);
+          }, 250 + k * 320); })(k);
+        }
+        timer = setTimeout(function () { if (p.classList.contains('is-sad')) toggle(); }, 6000);
+      }
+    }
+    p.addEventListener('click', toggle);
+    p.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
   });
   if (!reduceM && window.matchMedia('(pointer: fine)').matches) {
     var last = null, flip = false;
@@ -1036,7 +1110,7 @@ h2 { position: relative; }
   }
   document.getElementById('copy-email').addEventListener('click', function () {
     var btn = this, el = document.getElementById('email');
-    function ok() { btn.textContent = 'Fetched!'; var sp = document.querySelector('.side-art.letter img'); if (sp) { sp.style.animation = 'none'; void sp.offsetWidth; sp.style.animation = ''; } setTimeout(function () { btn.textContent = 'Copy email'; }, 1800); }
+    function ok() { btn.textContent = 'Fetched!'; var sp = document.querySelector('.side-art.letter'); if (sp && !sp.classList.contains('is-sad')) sp.click(); setTimeout(function () { btn.textContent = 'Copy email'; }, 1800); }
     function fallback() { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press ⌘C'; }
     try { navigator.clipboard.writeText(el.textContent).then(ok, fallback); } catch (e) { fallback(); }
   });
